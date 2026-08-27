@@ -1,0 +1,194 @@
+:root {
+  --bg-dark: #0b1326;
+  --bg-surface-lowest: #060e20;
+  --bg-surface-low: #131b2e;
+  --bg-surface: #171f33;
+  --bg-surface-high: #222a3d;
+  --bg-surface-highest: #2d3449;
+
+  --text-main: #dae2fd;
+  --text-muted: #c7c4d7;
+  --text-dim: #908fa0;
+  --outline: #464554;
+
+  --primary: #8083ff;
+  --primary-bright: #c0c1ff;
+  --primary-dark: #494bd6;
+  
+  --secondary: #4cd7f6;
+  --secondary-glow: rgba(76, 215, 246, 0.25);
+  
+  --tertiary: #4edea3;
+  --tertiary-glow: rgba(78, 222, 163, 0.25);
+  
+  --error: #ffb4ab;
+  --error-bg: rgba(255, 180, 171, 0.15);
+
+  --font-sans: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  font-family: var(--font-sans);
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  font-family: var(--font-sans);
+  min-height: 100vh;
+  overflow-x: hidden;
+  background-image: 
+    radial-gradient(circle at 50% 0%, rgba(128, 131, 255, 0.08) 0%, transparent 60%),
+    linear-gradient(rgba(45, 52, 73, 0.15) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(45, 52, 73, 0.15) 1px, transparent 1px);
+  background-size: 100% 100%, 32px 32px, 32px 32px;
+  background-position: 0 0, -1px -1px, -1px -1px;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-surface-lowest);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--bg-surface-highest);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
+
+/* Monospace Utilities */
+.mono-code {
+  font-family: var(--font-mono);
+}
+
+/* Scanline / Grid overlay effect */
+.grid-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    rgba(11, 19, 38, 0) 50%, 
+    rgba(6, 14, 32, 0.25) 50%
+  );
+  background-size: 100% 4px;
+  z-index: 9999;
+  opacity: 0.4;
+}
+
+/* Pulse animation */
+@keyframes livePulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(78, 222, 163, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 8px rgba(78, 222, 163, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(78, 222, 163, 0);
+  }
+}
+
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--tertiary);
+  border-radius: 50%;
+  display: inline-block;
+  animation: livePulse 2s infinite;
+}
+
+@keyframes cyanPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(76, 215, 246, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 8px rgba(76, 215, 246, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(76, 215, 246, 0);
+  }
+}
+
+.pulse-cyan {
+  width: 8px;
+  height: 8px;
+  background-color: var(--secondary);
+  border-radius: 50%;
+  display: inline-block;
+  animation: cyanPulse 2s infinite;
+}
+
+/* Glowing text & borders */
+.glow-primary {
+  text-shadow: 0 0 12px rgba(128, 131, 255, 0.6);
+}
+
+.glow-cyan {
+  text-shadow: 0 0 12px rgba(76, 215, 246, 0.6);
+}
+
+.glow-tertiary {
+  text-shadow: 0 0 12px rgba(78, 222, 163, 0.6);
+}
+
+.border-glow {
+  border: 1px solid rgba(128, 131, 255, 0.3);
+  box-shadow: 0 0 15px rgba(128, 131, 255, 0.1);
+}
+
+.border-glow:hover {
+  border-color: rgba(128, 131, 255, 0.6);
+  box-shadow: 0 0 20px rgba(128, 131, 255, 0.2);
+}
+
+/* Button & Form Controls */
+button {
+  font-family: var(--font-mono);
+  cursor: pointer;
+  border: none;
+  outline: none;
+  transition: all 0.2s ease-in-out;
+}
+
+input, select, textarea {
+  font-family: var(--font-sans);
+  background-color: var(--bg-surface-lowest);
+  border: 1px solid var(--outline);
+  color: var(--text-main);
+  padding: 10px 14px;
+  border-radius: 6px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 10px rgba(128, 131, 255, 0.3);
+}
+
+/* Keyframes for new commit entry */
+@keyframes slideDownIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-in {
+  animation: slideDownIn 0.35s ease-out forwards;
+}
