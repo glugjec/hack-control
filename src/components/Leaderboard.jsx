@@ -86,7 +86,7 @@ export default function Leaderboard({ teams, commits, onSelectTeam, onSelectComm
             <Trophy size={24} color="var(--tertiary)" />
           </div>
           <div>
-            <h1 style={{ fontSize: '24px', fontWeight: 800, color: '#fff', letterSpacing: '0.02em' }}>
+            <h1 style={{ fontSize: '24px', fontWeight: 800, color: 'var(--text-heading)', letterSpacing: '0.02em' }}>
               HACKATHON_LEADERBOARD // TOP TEAMS
             </h1>
             <p style={{ fontSize: '13px', color: 'var(--text-dim)', fontFamily: 'var(--font-mono)' }}>
@@ -113,12 +113,12 @@ export default function Leaderboard({ teams, commits, onSelectTeam, onSelectComm
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
-              style={{ fontSize: '12px', padding: '8px 12px', backgroundColor: 'var(--bg-surface-lowest)', color: '#fff', border: '1px solid var(--outline)', borderRadius: '6px' }}
+              style={{ fontSize: '12px', padding: '8px 12px', backgroundColor: 'var(--bg-surface-low)', color: 'var(--text-main)', border: '1px solid var(--outline)', borderRadius: '6px', cursor: 'pointer' }}
             >
-              <option value="commits">Total Commits</option>
-              <option value="date">Latest Commit Date</option>
-              <option value="loc">Lines of Code</option>
-              <option value="health">Health Score</option>
+              <option value="commits" style={{ backgroundColor: 'var(--bg-surface)', color: 'var(--text-main)' }}>Total Commits</option>
+              <option value="date" style={{ backgroundColor: 'var(--bg-surface)', color: 'var(--text-main)' }}>Latest Commit Date</option>
+              <option value="loc" style={{ backgroundColor: 'var(--bg-surface)', color: 'var(--text-main)' }}>Lines of Code</option>
+              <option value="health" style={{ backgroundColor: 'var(--bg-surface)', color: 'var(--text-main)' }}>Health Score</option>
             </select>
           </div>
         </div>
@@ -179,16 +179,16 @@ export default function Leaderboard({ teams, commits, onSelectTeam, onSelectComm
                       <tr
                         onClick={() => onSelectTeam(team)}
                         style={{
-                          borderBottom: '1px solid var(--bg-surface-high)',
-                          backgroundColor: isExpanded ? 'var(--bg-surface-high)' : (idx % 2 === 0 ? 'rgba(23, 31, 51, 0.4)' : 'transparent'),
+                          borderBottom: '1px solid var(--outline)',
+                          backgroundColor: isExpanded ? 'var(--bg-surface-high)' : (idx % 2 === 0 ? 'var(--bg-surface-low)' : 'var(--bg-surface)'),
                           cursor: 'pointer',
-                          transition: 'background-color 0.2s'
+                          transition: 'background-color 0.15s ease'
                         }}
                         onMouseOver={(e) => {
                           if (!isExpanded) e.currentTarget.style.backgroundColor = 'var(--bg-surface-high)';
                         }}
                         onMouseOut={(e) => {
-                          if (!isExpanded) e.currentTarget.style.backgroundColor = idx % 2 === 0 ? 'rgba(23, 31, 51, 0.4)' : 'transparent';
+                          if (!isExpanded) e.currentTarget.style.backgroundColor = idx % 2 === 0 ? 'var(--bg-surface-low)' : 'var(--bg-surface)';
                         }}
                       >
                         {/* Rank */}
@@ -197,14 +197,15 @@ export default function Leaderboard({ teams, commits, onSelectTeam, onSelectComm
                             fontFamily: 'var(--font-mono)',
                             fontWeight: 800,
                             fontSize: '14px',
-                            color: rankNum === 1 ? '#facc15' : rankNum === 2 ? '#e2e8f0' : rankNum === 3 ? '#cd7f32' : 'var(--text-dim)',
+                            color: rankNum === 1 ? '#eab308' : rankNum === 2 ? 'var(--secondary)' : rankNum === 3 ? '#d97706' : 'var(--text-dim)',
                             display: 'inline-flex',
                             alignItems: 'center',
                             justifyContent: 'center',
                             width: '28px',
                             height: '28px',
                             borderRadius: '6px',
-                            backgroundColor: isTop3 ? 'rgba(255, 255, 255, 0.05)' : 'transparent'
+                            backgroundColor: isTop3 ? 'var(--bg-surface-high)' : 'transparent',
+                            border: isTop3 ? '1px solid var(--outline)' : 'none'
                           }}>
                             #{rankNum}
                           </span>
@@ -217,9 +218,9 @@ export default function Leaderboard({ teams, commits, onSelectTeam, onSelectComm
                               width: '32px',
                               height: '32px',
                               borderRadius: '6px',
-                              backgroundColor: `${team.avatarColor || '#8083ff'}25`,
-                              border: `1px solid ${team.avatarColor || '#8083ff'}`,
-                              color: team.avatarColor || '#8083ff',
+                              backgroundColor: `${team.avatarColor || 'var(--primary)'}25`,
+                              border: `1px solid ${team.avatarColor || 'var(--primary)'}`,
+                              color: team.avatarColor || 'var(--primary)',
                               display: 'flex',
                               alignItems: 'center',
                               justifyContent: 'center',
@@ -230,7 +231,7 @@ export default function Leaderboard({ teams, commits, onSelectTeam, onSelectComm
                               {team.name.substring(0, 2).toUpperCase()}
                             </div>
                             <div>
-                              <div style={{ fontWeight: 700, color: '#fff', fontSize: '14px' }}>
+                              <div style={{ fontWeight: 700, color: 'var(--text-heading)', fontSize: '14px' }}>
                                 {team.name}
                               </div>
                               <div style={{ fontSize: '11px', color: 'var(--text-dim)', fontFamily: 'var(--font-mono)' }}>
@@ -247,7 +248,7 @@ export default function Leaderboard({ teams, commits, onSelectTeam, onSelectComm
                             fontSize: '11px',
                             padding: '3px 8px',
                             borderRadius: '4px',
-                            backgroundColor: 'var(--bg-surface-lowest)',
+                            backgroundColor: 'var(--bg-surface-high)',
                             border: '1px solid var(--outline)',
                             color: 'var(--text-muted)'
                           }}>
@@ -460,7 +461,7 @@ export default function Leaderboard({ teams, commits, onSelectTeam, onSelectComm
                                         <span style={{ fontFamily: 'var(--font-mono)', fontSize: '11px', fontWeight: 700, color: 'var(--primary-bright)' }}>
                                           {c.id}
                                         </span>
-                                        <span style={{ color: '#fff', fontSize: '13px', fontWeight: 600 }}>
+                                        <span style={{ color: 'var(--text-heading)', fontSize: '13px', fontWeight: 600 }}>
                                           {c.message}
                                         </span>
                                         <span style={{ fontSize: '11px', color: 'var(--text-dim)' }}>

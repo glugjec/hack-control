@@ -187,7 +187,7 @@ export default function MetricsHeader({
                 fontFamily: 'var(--font-mono)',
                 fontSize: '26px',
                 fontWeight: 800,
-                color: '#fff',
+                color: 'var(--text-heading)',
                 lineHeight: 1.2
               }}>
                 {m.value}

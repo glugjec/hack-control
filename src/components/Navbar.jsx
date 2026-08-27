@@ -1,5 +1,4 @@
-import React from 'react';
-import { Activity, PlusSquare, BarChart2, Shield, Radio, Terminal, Cpu, Upload, ClipboardCheck } from 'lucide-react';
+import { Activity, PlusSquare, BarChart2, Shield, Radio, Terminal, Cpu, Upload, ClipboardCheck, Sun, Moon } from 'lucide-react';
 
 export default function Navbar({ 
   activeTab, 
@@ -9,7 +8,9 @@ export default function Navbar({
   isLiveSyncing, 
   setIsLiveSyncing, 
   totalTeams = 0,
-  onManualSync
+  onManualSync,
+  theme,
+  onToggleTheme
 }) {
   return (
     <header style={{
@@ -19,7 +20,7 @@ export default function Navbar({
       position: 'sticky',
       top: 0,
       zIndex: 100,
-      boxShadow: '0 4px 20px rgba(0, 0, 0, 0.4)'
+      boxShadow: '0 4px 20px var(--shadow-color)'
     }}>
       <div style={{
         maxWidth: '1440px',
@@ -44,7 +45,7 @@ export default function Navbar({
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              boxShadow: '0 0 12px rgba(128, 131, 255, 0.3)'
+              boxShadow: '0 0 12px var(--shadow-color)'
             }}>
               <Cpu size={20} color="var(--primary-bright)" />
             </div>
@@ -54,7 +55,7 @@ export default function Navbar({
                 fontWeight: 800, 
                 fontSize: '16px', 
                 letterSpacing: '0.05em',
-                color: '#fff',
+                color: 'var(--text-heading)',
                 display: 'flex',
                 alignItems: 'center',
                 gap: '8px'
@@ -62,7 +63,7 @@ export default function Navbar({
                 HACK_MONITOR <span style={{ color: 'var(--primary-bright)', fontSize: '11px', padding: '2px 6px', background: 'rgba(128, 131, 255, 0.2)', borderRadius: '4px' }}>v1.0</span>
               </div>
               <div style={{ fontSize: '11px', color: 'var(--text-dim)', fontFamily: 'var(--font-mono)' }}>
-                KINETIC PULSE CONTROL // GIT MONITOR
+                built by <a href="https://github.com/RidDevs" target="_blank" rel="noreferrer" style={{ color: 'var(--primary)', textDecoration: 'none' }}>github.com/RidDevs</a>
               </div>
             </div>
           </div>
@@ -85,7 +86,7 @@ export default function Navbar({
               display: 'flex',
               alignItems: 'center',
               gap: '8px',
-              backgroundColor: isLiveSyncing ? 'rgba(78, 222, 163, 0.12)' : 'rgba(144, 143, 160, 0.15)',
+              backgroundColor: isLiveSyncing ? 'rgba(78, 222, 163, 0.12)' : 'var(--bg-surface-high)',
               border: `1px solid ${isLiveSyncing ? 'var(--tertiary)' : 'var(--outline)'}`,
               padding: '6px 12px',
               borderRadius: '4px',
@@ -112,7 +113,7 @@ export default function Navbar({
               borderRadius: '4px',
               backgroundColor: activeTab === 'dashboard' ? 'var(--bg-surface-high)' : 'transparent',
               color: activeTab === 'dashboard' ? 'var(--primary-bright)' : 'var(--text-muted)',
-              border: activeTab === 'dashboard' ? '1px solid var(--primary-dark)' : '1px solid transparent',
+              border: activeTab === 'dashboard' ? '1px solid var(--primary)' : '1px solid transparent',
               fontSize: '13px',
               fontWeight: 700,
               letterSpacing: '0.05em'
@@ -172,7 +173,7 @@ export default function Navbar({
               borderRadius: '4px',
               backgroundColor: activeTab === 'evaluation' ? 'var(--bg-surface-high)' : 'transparent',
               color: activeTab === 'evaluation' ? 'var(--primary-bright)' : 'var(--text-muted)',
-              border: activeTab === 'evaluation' ? '1px solid var(--primary-dark)' : '1px solid transparent',
+              border: activeTab === 'evaluation' ? '1px solid var(--primary)' : '1px solid transparent',
               fontSize: '13px',
               fontWeight: 700,
               letterSpacing: '0.05em'
@@ -217,11 +218,11 @@ export default function Navbar({
               marginLeft: '4px',
               borderRadius: '4px',
               backgroundColor: 'var(--primary)',
-              color: '#07006c',
+              color: '#ffffff',
               fontSize: '13px',
               fontWeight: 800,
               letterSpacing: '0.05em',
-              boxShadow: '0 0 14px rgba(128, 131, 255, 0.4)',
+              boxShadow: '0 0 14px var(--shadow-color)',
               transition: 'transform 0.15s ease'
             }}
             onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.03)'}
@@ -229,6 +230,38 @@ export default function Navbar({
           >
             <PlusSquare size={16} />
             REGISTER_TEAM
+          </button>
+
+          {/* Theme Switcher Toggle */}
+          <button
+            onClick={onToggleTheme}
+            title={`Switch to ${theme === 'light' ? 'Dark Mode' : 'Clean Light Mode'}`}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '6px',
+              padding: '8px 12px',
+              marginLeft: '8px',
+              borderRadius: '4px',
+              backgroundColor: 'var(--bg-surface-high)',
+              border: '1px solid var(--outline)',
+              color: 'var(--text-main)',
+              fontSize: '12px',
+              fontWeight: 700,
+              cursor: 'pointer'
+            }}
+          >
+            {theme === 'light' ? (
+              <>
+                <Moon size={16} color="var(--primary)" />
+                <span style={{ fontFamily: 'var(--font-mono)' }}>DARK</span>
+              </>
+            ) : (
+              <>
+                <Sun size={16} color="#facc15" />
+                <span style={{ fontFamily: 'var(--font-mono)' }}>LIGHT</span>
+              </>
+            )}
           </button>
         </nav>
       </div>

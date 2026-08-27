@@ -16,6 +16,20 @@ import { fetchRealGitHubCommits } from './services/githubService';
 const DUMMY_TEAM_IDS = ['team-react-core', 'team-vite-speed', 'team-next-infra'];
 
 function App() {
+  // Theme management: default to 'light' (clean mood) or persisted value
+  const [theme, setTheme] = useState(() => {
+    return localStorage.getItem('hack_monitor_theme') || 'light';
+  });
+
+  useEffect(() => {
+    document.body.setAttribute('data-theme', theme);
+    localStorage.setItem('hack_monitor_theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(prev => (prev === 'light' ? 'dark' : 'light'));
+  };
+
   // Load initial teams from localStorage or fallback to INITIAL_TEAMS
   const [teams, setTeams] = useState(() => {
     try {
@@ -297,6 +311,8 @@ function App() {
         setIsLiveSyncing={setIsLiveSyncing}
         totalTeams={teams.length}
         onManualSync={handleManualSync}
+        theme={theme}
+        onToggleTheme={toggleTheme}
       />
 
       <main style={{ flex: 1, width: '100%', maxWidth: '1400px', margin: '0 auto', padding: '24px 20px' }}>

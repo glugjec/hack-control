@@ -98,25 +98,6 @@ export default function LiveDashboard({
           </button>
 
           <button
-            onClick={onOpenAddTeam}
-            style={{
-              backgroundColor: 'var(--primary)',
-              color: '#07006c',
-              border: 'none',
-              padding: '6px 14px',
-              borderRadius: '6px',
-              fontSize: '12px',
-              fontWeight: 800,
-              display: 'flex',
-              alignItems: 'center',
-              gap: '6px',
-              cursor: 'pointer'
-            }}
-          >
-            <Plus size={14} /> ADD_TEAM
-          </button>
-
-          <button
             onClick={handleResetClick}
             style={{
               backgroundColor: 'rgba(255, 180, 171, 0.12)',
