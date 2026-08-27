@@ -3,10 +3,9 @@ import { X, Upload, FileText, CheckCircle2, AlertCircle, Terminal, Download, Spa
 import { parseGitHubRepo, fetchRealGitHubCommits } from '../services/githubService';
 
 const SAMPLE_CSV = `Team Name,Repository,Category,Members,Mission
-React_Core,facebook/react,AI & ML,Dan Abramov; Sophie Alpert,UI Component Renderer
-Vite_Speed,vitejs/vite,Cloud / Distributed,Evan You; Patak,Next Gen Frontend Tooling
-Next_Infra,vercel/next.js,Web3 & Infra,Guillermo Rauch; Tim Neutkens,Fullstack Framework
-Cyber_Guard,null-pointers/kernel-guard,Cybersecurity,Viktor Krum; Siddharth Rao,Kernel Memory Security`;
+Cyber_Guard,null-pointers/kernel-guard,Cybersecurity,Viktor Krum; Siddharth Rao,Kernel Memory Security
+Alpha_Ops,alpha-org/mesh-net,Cloud / Distributed,Alex Rivera; Elena Chen,Distributed P2P Mesh Routing
+Neural_Nodes,neural-labs/vision-model,AI & ML,Devon Vance; Maya Lin,Real-time Vision Inference`;
 
 export default function BulkImportModal({ isOpen, onClose, onBulkAddTeams }) {
   const [csvText, setCsvText] = useState('');
@@ -262,7 +261,7 @@ export default function BulkImportModal({ isOpen, onClose, onBulkAddTeams }) {
             </div>
             <textarea
               rows={7}
-              placeholder={`Team Name,Repository,Category,Members,Mission\nSyntax_Syndicate,facebook/react,AI & ML,Alex; Elena,Building security parser\nCloud_Nomads,cloud-nomads/cache-mesh,,Sarah,Distributed cache relay`}
+              placeholder={`Team Name,Repository,Category,Members,Mission\nSyntax_Syndicate,user/repo-parser,AI & ML,Alex; Elena,Building security parser\nCloud_Nomads,cloud-nomads/cache-mesh,,Sarah,Distributed cache relay`}
               value={csvText}
               onChange={(e) => setCsvText(e.target.value)}
               style={{ width: '100%', fontFamily: 'var(--font-mono)', fontSize: '12px', lineHeight: 1.5 }}

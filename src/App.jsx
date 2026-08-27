@@ -9,8 +9,11 @@ import AddTeamModal from './components/AddTeamModal';
 import EditTeamModal from './components/EditTeamModal';
 import BulkImportModal from './components/BulkImportModal';
 import CommitDiffModal from './components/CommitDiffModal';
+import TeamEvaluation from './components/TeamEvaluation';
 import { INITIAL_TEAMS, INITIAL_COMMITS } from './data/mockData';
 import { fetchRealGitHubCommits } from './services/githubService';
+
+const DUMMY_TEAM_IDS = ['team-react-core', 'team-vite-speed', 'team-next-infra'];
 
 function App() {
   // Load initial teams from localStorage or fallback to INITIAL_TEAMS
@@ -19,7 +22,10 @@ function App() {
       const saved = localStorage.getItem('hack_monitor_teams');
       if (saved) {
         const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed)) return parsed;
+        if (Array.isArray(parsed)) {
+          // Filter out legacy dummy repos
+          return parsed.filter(t => !DUMMY_TEAM_IDS.includes(t.id));
+        }
       }
     } catch (e) {
       console.warn('Failed to load teams from localStorage:', e);
@@ -33,7 +39,10 @@ function App() {
       const saved = localStorage.getItem('hack_monitor_commits');
       if (saved) {
         const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed)) return parsed;
+        if (Array.isArray(parsed)) {
+          // Filter out legacy dummy commits
+          return parsed.filter(c => !DUMMY_TEAM_IDS.includes(c.teamId));
+        }
       }
     } catch (e) {
       console.warn('Failed to load commits from localStorage:', e);
@@ -363,6 +372,14 @@ function App() {
             onSelectCommit={(commit) => setSelectedCommit(commit)}
             onEditTeam={handleOpenEditTeam}
             onDeleteTeam={handleDeleteTeam}
+          />
+        )}
+
+        {activeTab === 'evaluation' && (
+          <TeamEvaluation
+            teams={teams}
+            commits={commits}
+            onSelectTeam={handleSelectTeam}
           />
         )}
 

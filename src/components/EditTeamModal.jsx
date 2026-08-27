@@ -34,7 +34,7 @@ export default function EditTeamModal({ isOpen, onClose, team, onSaveTeam, onDel
     if (!parsed) {
       setTestResult({
         success: false,
-        error: 'Invalid format. Use owner/repo or github.com/owner/repo (e.g. facebook/react)'
+        error: 'Invalid format. Use owner/repo or github.com/owner/repo'
       });
       return;
     }
@@ -214,7 +214,7 @@ export default function EditTeamModal({ isOpen, onClose, team, onSaveTeam, onDel
               required
               value={repo}
               onChange={(e) => setRepo(e.target.value)}
-              placeholder="github.com/facebook/react or owner/repo"
+              placeholder="github.com/owner/repo or owner/repo"
               style={{
                 width: '100%',
                 backgroundColor: 'rgba(255,255,255,0.03)',
@@ -289,7 +289,7 @@ export default function EditTeamModal({ isOpen, onClose, team, onSaveTeam, onDel
               type="text"
               value={members}
               onChange={(e) => setMembers(e.target.value)}
-              placeholder="Dan Abramov, Sophie Alpert, Andrew Clark"
+              placeholder="Alex Rivera, Elena Chen, Marcus Vance"
               style={{
                 width: '100%',
                 backgroundColor: 'rgba(255,255,255,0.03)',

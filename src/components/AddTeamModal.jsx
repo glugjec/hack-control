@@ -171,7 +171,7 @@ export default function AddTeamModal({ isOpen, onClose, onAddTeam }) {
               <input
                 type="text"
                 required
-                placeholder="e.g. React_Core or Syntax_Syndicate"
+                placeholder="e.g. Cyber_Guard or Team_Alpha"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 style={{ width: '100%' }}
@@ -187,7 +187,7 @@ export default function AddTeamModal({ isOpen, onClose, onAddTeam }) {
                 <input
                   type="text"
                   required
-                  placeholder="e.g. facebook/react or vitejs/vite or user/repo"
+                  placeholder="e.g. owner/repository or user/repo"
                   value={repo}
                   onChange={(e) => setRepo(e.target.value)}
                   style={{ flex: 1 }}

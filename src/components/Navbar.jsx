@@ -1,5 +1,5 @@
 import React from 'react';
-import { Activity, PlusSquare, BarChart2, Shield, Radio, Terminal, Cpu, Upload } from 'lucide-react';
+import { Activity, PlusSquare, BarChart2, Shield, Radio, Terminal, Cpu, Upload, ClipboardCheck } from 'lucide-react';
 
 export default function Navbar({ 
   activeTab, 
@@ -160,6 +160,26 @@ export default function Navbar({
           >
             <BarChart2 size={16} />
             LEADERBOARD ({totalTeams})
+          </button>
+
+          <button
+            onClick={() => setActiveTab('evaluation')}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
+              padding: '8px 16px',
+              borderRadius: '4px',
+              backgroundColor: activeTab === 'evaluation' ? 'var(--bg-surface-high)' : 'transparent',
+              color: activeTab === 'evaluation' ? 'var(--primary-bright)' : 'var(--text-muted)',
+              border: activeTab === 'evaluation' ? '1px solid var(--primary-dark)' : '1px solid transparent',
+              fontSize: '13px',
+              fontWeight: 700,
+              letterSpacing: '0.05em'
+            }}
+          >
+            <ClipboardCheck size={16} />
+            EVALUATION
           </button>
 
           {/* Action Buttons */}
