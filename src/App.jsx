@@ -374,6 +374,7 @@ function App() {
             onSelectCommit={(commit) => setSelectedCommit(commit)}
             onEditTeam={handleOpenEditTeam}
             onDeleteTeam={handleDeleteTeam}
+            onSimulateCommitForTeam={handleManualSync}
           />
         )}
       </main>

@@ -24,6 +24,8 @@ export default function LiveDashboard({
       const latest = commits[0];
       const logLine = `[${new Date().toLocaleTimeString()}] INFO git_sentinel::stream: commit=${latest.id} team=${latest.teamName} branch=${latest.branch} (+${latest.linesAdded}/-${latest.linesDeleted})`;
       setTerminalLogs((prev) => [logLine, ...prev.slice(0, 19)]);
+    } else {
+      setTerminalLogs([]);
     }
   }, [commits]);
 
@@ -35,12 +37,8 @@ export default function LiveDashboard({
     : 0;
 
   const handleResetClick = () => {
-    const first = window.confirm("1ST CONFIRMATION:\nAre you sure you want to reset all hackathon data?");
-    if (first) {
-      const second = window.confirm("2ND CONFIRMATION (FINAL WARNING):\nThis will permanently delete all stored teams and commit streams from localStorage. Proceed?");
-      if (second) {
-        onResetHackathon();
-      }
+    if (onResetHackathon) {
+      onResetHackathon();
     }
   };
 
