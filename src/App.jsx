@@ -379,7 +379,7 @@ function App() {
           <TeamEvaluation
             teams={teams}
             commits={commits}
-            onSelectTeam={handleSelectTeam}
+            onNavigateToTeam={handleSelectTeam}
           />
         )}
 

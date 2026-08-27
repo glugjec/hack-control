@@ -32,7 +32,7 @@ const CATEGORY_TAGS = [
   { id: 'GENERAL', label: 'General Note', color: 'var(--text-muted)', bg: 'var(--bg-surface-highest)' }
 ];
 
-export default function TeamEvaluation({ teams, commits, onSelectTeam }) {
+export default function TeamEvaluation({ teams, commits, onNavigateToTeam }) {
   // Evaluator info
   const [judgeName, setJudgeName] = useState(() => {
     return localStorage.getItem('hack_evaluator_name') || 'Judge Alpha';
@@ -405,10 +405,7 @@ export default function TeamEvaluation({ teams, commits, onSelectTeam }) {
                   return (
                     <div
                       key={t.id}
-                      onClick={() => {
-                        setSelectedTeamId(t.id);
-                        if (onSelectTeam) onSelectTeam(t);
-                      }}
+                      onClick={() => setSelectedTeamId(t.id)}
                       style={{
                         padding: '12px',
                         borderRadius: '8px',
@@ -485,6 +482,34 @@ export default function TeamEvaluation({ teams, commits, onSelectTeam }) {
                   <div>Members: <strong style={{ color: '#fff' }}>{currentTeam.members ? currentTeam.members.map(m => m.name).join(', ') : 'N/A'}</strong></div>
                   <div>Last Commit: <strong style={{ color: 'var(--secondary)' }}>{currentTeam.lastCommitTime || 'N/A'}</strong></div>
                 </div>
+
+                {onNavigateToTeam && (
+                  <button
+                    onClick={() => onNavigateToTeam(currentTeam)}
+                    style={{
+                      marginTop: '14px',
+                      width: '100%',
+                      backgroundColor: 'rgba(128, 131, 255, 0.12)',
+                      border: '1px solid var(--primary-dark)',
+                      borderRadius: '6px',
+                      padding: '8px 12px',
+                      color: 'var(--primary-bright)',
+                      fontSize: '11px',
+                      fontFamily: 'var(--font-mono)',
+                      fontWeight: 700,
+                      cursor: 'pointer',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      gap: '6px',
+                      transition: 'all 0.15s ease'
+                    }}
+                    onMouseOver={(e) => e.currentTarget.style.backgroundColor = 'rgba(128, 131, 255, 0.25)'}
+                    onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'rgba(128, 131, 255, 0.12)'}
+                  >
+                    VIEW FULL TEAM PROFILE <ExternalLink size={12} />
+                  </button>
+                )}
               </div>
             )}
           </div>
