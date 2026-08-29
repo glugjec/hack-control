@@ -5,6 +5,9 @@ export default function TeamDetailView({ team, commits, onBack, onSelectCommit, 
   if (!team) return null;
 
   const teamCommits = commits.filter(c => c.teamId === team.id || c.teamName === team.name);
+  const totalCommitsCount = teamCommits.length;
+  const linesAddedCount = teamCommits.reduce((acc, c) => acc + (c.linesAdded || 0), 0);
+  const linesDeletedCount = teamCommits.reduce((acc, c) => acc + (c.linesDeleted || 0), 0);
 
   return (
     <div className="animate-slide-in" style={{ paddingBottom: '40px' }}>
@@ -162,7 +165,7 @@ export default function TeamDetailView({ team, commits, onBack, onSelectCommit, 
             <div style={{ backgroundColor: 'var(--bg-surface-lowest)', padding: '12px', borderRadius: '6px' }}>
               <div style={{ fontSize: '11px', color: 'var(--text-dim)', fontFamily: 'var(--font-mono)' }}>TOTAL COMMITS</div>
               <div style={{ fontSize: '20px', fontWeight: 800, color: 'var(--text-heading)', fontFamily: 'var(--font-mono)', marginTop: '4px' }}>
-                {team.totalCommits + teamCommits.length}
+                {totalCommitsCount}
               </div>
             </div>
             <div style={{ backgroundColor: 'var(--bg-surface-lowest)', padding: '12px', borderRadius: '6px' }}>
@@ -174,13 +177,13 @@ export default function TeamDetailView({ team, commits, onBack, onSelectCommit, 
             <div style={{ backgroundColor: 'var(--bg-surface-lowest)', padding: '12px', borderRadius: '6px' }}>
               <div style={{ fontSize: '11px', color: 'var(--text-dim)', fontFamily: 'var(--font-mono)' }}>LINES ADDED</div>
               <div style={{ fontSize: '20px', fontWeight: 800, color: 'var(--tertiary)', fontFamily: 'var(--font-mono)', marginTop: '4px' }}>
-                +{(team.linesAdded).toLocaleString()}
+                +{linesAddedCount.toLocaleString()}
               </div>
             </div>
             <div style={{ backgroundColor: 'var(--bg-surface-lowest)', padding: '12px', borderRadius: '6px' }}>
               <div style={{ fontSize: '11px', color: 'var(--text-dim)', fontFamily: 'var(--font-mono)' }}>LINES DELETED</div>
               <div style={{ fontSize: '20px', fontWeight: 800, color: 'var(--error)', fontFamily: 'var(--font-mono)', marginTop: '4px' }}>
-                -{(team.linesDeleted).toLocaleString()}
+                -{linesDeletedCount.toLocaleString()}
               </div>
             </div>
           </div>

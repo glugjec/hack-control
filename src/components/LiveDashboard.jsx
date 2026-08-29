@@ -463,7 +463,7 @@ export default function LiveDashboard({
 
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                     <span style={{ fontFamily: 'var(--font-mono)', fontSize: '11px', color: 'var(--secondary)' }}>
-                      {t.totalCommits || 0} commits
+                      {commits.filter(c => c.teamId === t.id || c.teamName === t.name).length} commits
                     </span>
                     
                     {onEditTeam && (

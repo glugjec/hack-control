@@ -19,7 +19,7 @@ export default function Leaderboard({ teams, commits, onSelectTeam, onSelectComm
     const latestCommit = teamCommits[0];
     const latestRawTime = latestCommit ? (latestCommit.rawTime || 0) : 0;
     const latestCommitDateStr = latestCommit ? latestCommit.timestamp : (team.lastCommitTime || 'No commits recorded');
-    const effectiveCommits = Math.max(team.totalCommits || 0, teamCommits.length);
+    const effectiveCommits = teamCommits.length;
     const computedHealth = calculateTeamHealthScore(team, teamCommits);
 
     return {

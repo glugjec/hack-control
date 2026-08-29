@@ -41,20 +41,21 @@ export default function BulkImportModal({ isOpen, onClose, onBulkAddTeams }) {
         : [{ name: 'Team Lead', role: 'Developer' }];
 
       const parsedRepo = parseGitHubRepo(repo);
+      const cleanRepoStr = parsedRepo ? `${parsedRepo.owner}/${parsedRepo.repo}` : repo.replace(/^https?:\/\//, '').replace(/^github\.com\//, '').replace(/\.git$/, '');
 
       parsedTeams.push({
         id: `team-${Date.now()}-${i}`,
         name: name.replace(/\s+/g, '_'),
-        repo: repo ? (repo.includes('github.com') ? repo : `github.com/${repo}`) : 'github.com/org/repo',
+        repo: cleanRepoStr ? `github.com/${cleanRepoStr}` : 'github.com/org/repo',
         ownerRepo: parsedRepo ? { owner: parsedRepo.owner, repo: parsedRepo.repo } : null,
         category: category, // Can be empty string
         status: 'ACTIVE',
         members: memberList,
-        totalCommits: Math.floor(Math.random() * 30) + 5,
-        linesAdded: Math.floor(Math.random() * 4000) + 500,
-        linesDeleted: Math.floor(Math.random() * 600) + 50,
-        healthScore: Math.floor(Math.random() * 20) + 80,
-        lastCommitTime: 'Just now',
+        totalCommits: 0,
+        linesAdded: 0,
+        linesDeleted: 0,
+        healthScore: 80,
+        lastCommitTime: 'No commits recorded',
         problemStatement: mission,
         avatarColor: colors[i % colors.length]
       });
@@ -97,16 +98,25 @@ export default function BulkImportModal({ isOpen, onClose, onBulkAddTeams }) {
     for (const team of parsedTeams) {
       if (team.ownerRepo) {
         try {
-          const realCommits = await fetchRealGitHubCommits(team.ownerRepo.owner, team.ownerRepo.repo);
-          if (realCommits && realCommits.length > 0) {
+          const realCommits = await fetchRealGitHubCommits(team.ownerRepo.owner, team.ownerRepo.repo, team.id, team.name);
+          if (Array.isArray(realCommits)) {
             const formatted = realCommits.map(c => ({
               ...c,
               teamId: team.id,
               teamName: team.name
             }));
-            bulkCommits.push(...formatted);
-            team.totalCommits += formatted.length;
-            team.lastCommitTime = formatted[0].timestamp;
+            if (formatted.length > 0) {
+              bulkCommits.push(...formatted);
+              team.totalCommits = formatted.length;
+              team.linesAdded = formatted.reduce((acc, c) => acc + (c.linesAdded || 0), 0);
+              team.linesDeleted = formatted.reduce((acc, c) => acc + (c.linesDeleted || 0), 0);
+              team.lastCommitTime = formatted[0].timestamp;
+            } else {
+              team.totalCommits = 0;
+              team.linesAdded = 0;
+              team.linesDeleted = 0;
+              team.lastCommitTime = 'No commits recorded';
+            }
           }
         } catch (err) {
           // Fallback handled gracefully

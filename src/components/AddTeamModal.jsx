@@ -65,11 +65,11 @@ export default function AddTeamModal({ isOpen, onClose, onAddTeam }) {
       category,
       status: 'ACTIVE',
       members: memberList,
-      totalCommits: testResult && testResult.stars ? testResult.stars + 12 : 15,
-      linesAdded: Math.floor(Math.random() * 5000) + 1200,
-      linesDeleted: Math.floor(Math.random() * 800) + 150,
-      healthScore: 99,
-      lastCommitTime: 'Just now',
+      totalCommits: 0,
+      linesAdded: 0,
+      linesDeleted: 0,
+      healthScore: 80,
+      lastCommitTime: 'No commits recorded',
       problemStatement: problem.trim() || 'Real GitHub repository active telemetry monitoring.',
       avatarColor
     };

@@ -10,10 +10,13 @@ export function parseGitHubRepo(repoString) {
   clean = clean.replace(/^https?:\/\//, '');
   clean = clean.replace(/^github\.com\//, '');
   clean = clean.replace(/\/$/, '');
+  clean = clean.replace(/\.git$/, '');
+  clean = clean.replace(/\/$/, '');
   
   const parts = clean.split('/');
   if (parts.length >= 2) {
-    return { owner: parts[0], repo: parts[1] };
+    const repoClean = parts[1].replace(/\.git$/, '');
+    return { owner: parts[0], repo: repoClean };
   }
   return null;
 }

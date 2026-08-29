@@ -448,7 +448,7 @@ export default function TeamEvaluation({ teams, commits, onNavigateToTeam }) {
 
                       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '11px', fontFamily: 'var(--font-mono)' }}>
                         <span style={{ color: 'var(--secondary)' }}>
-                          {t.totalCommits || 0} commits
+                          {commits.filter(c => c.teamId === t.id || c.teamName === t.name).length} commits
                         </span>
                         <span style={{ color: 'var(--text-muted)', display: 'flex', alignItems: 'center', gap: '4px' }}>
                           <MessageSquare size={12} /> {teamNoteCount} notes

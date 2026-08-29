@@ -37,8 +37,22 @@ function App() {
       if (saved) {
         const parsed = JSON.parse(saved);
         if (Array.isArray(parsed)) {
-          // Filter out legacy dummy repos
-          return parsed.filter(t => !DUMMY_TEAM_IDS.includes(t.id));
+          // Filter out legacy dummy repos and sanitize repo URLs / ghost counts
+          return parsed.filter(t => !DUMMY_TEAM_IDS.includes(t.id)).map(t => {
+            let cleanOwnerRepo = t.ownerRepo;
+            if (!cleanOwnerRepo && t.repo) {
+              cleanOwnerRepo = parseGitHubRepo(t.repo);
+            } else if (cleanOwnerRepo && cleanOwnerRepo.repo) {
+              cleanOwnerRepo.repo = cleanOwnerRepo.repo.replace(/\.git$/, '');
+            }
+            const cleanRepoStr = cleanOwnerRepo ? `github.com/${cleanOwnerRepo.owner}/${cleanOwnerRepo.repo}` : (t.repo ? t.repo.replace(/\.git$/, '') : t.repo);
+            
+            return {
+              ...t,
+              repo: cleanRepoStr,
+              ownerRepo: cleanOwnerRepo
+            };
+          });
         }
       }
     } catch (e) {
@@ -116,7 +130,7 @@ function App() {
           continue;
         }
 
-        if (Array.isArray(result) && result.length > 0) {
+        if (Array.isArray(result)) {
           const formatted = result.map(c => ({
             ...c,
             teamId: team.id,
@@ -129,7 +143,7 @@ function App() {
             return sortCommitsByDate([...newOnly, ...prev]);
           });
 
-          // Update team's total commits and last commit date
+          // Update team's total commits, LOC, and last commit date
           setTeams((prevTeams) =>
             prevTeams.map((t) => {
               if (t.id === team.id) {
@@ -137,7 +151,9 @@ function App() {
                 return {
                   ...t,
                   totalCommits: teamCommits.length,
-                  lastCommitTime: teamCommits[0]?.timestamp || t.lastCommitTime
+                  linesAdded: teamCommits.reduce((acc, c) => acc + (c.linesAdded || 0), 0),
+                  linesDeleted: teamCommits.reduce((acc, c) => acc + (c.linesDeleted || 0), 0),
+                  lastCommitTime: teamCommits[0]?.timestamp || (teamCommits.length === 0 ? 'No commits recorded' : t.lastCommitTime)
                 };
               }
               return t;
@@ -240,7 +256,7 @@ function App() {
 
       if (result && result.rateLimited) {
         setApiError(result.message);
-      } else if (Array.isArray(result) && result.length > 0) {
+      } else if (Array.isArray(result)) {
         const formattedRealCommits = sortCommitsByDate(result.map(c => ({
           ...c,
           teamId: newTeam.id,
@@ -259,7 +275,9 @@ function App() {
               ? {
                   ...t,
                   totalCommits: formattedRealCommits.length,
-                  lastCommitTime: formattedRealCommits[0].timestamp
+                  linesAdded: formattedRealCommits.reduce((acc, c) => acc + (c.linesAdded || 0), 0),
+                  linesDeleted: formattedRealCommits.reduce((acc, c) => acc + (c.linesDeleted || 0), 0),
+                  lastCommitTime: formattedRealCommits[0]?.timestamp || 'No commits recorded'
                 }
               : t
           )
