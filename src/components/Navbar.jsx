@@ -55,7 +55,7 @@ export default function Navbar({
               }}>
                 <Cpu size={20} color="var(--primary-bright)" />
               </div>
-              <div>
+              <div className="desktop-only">
                 <div style={{ 
                   fontFamily: 'var(--font-mono)', 
                   fontWeight: 800, 
@@ -68,7 +68,7 @@ export default function Navbar({
                 }}>
                   HACK_MONITOR <span style={{ color: 'var(--primary-bright)', fontSize: '10px', padding: '2px 5px', background: 'rgba(128, 131, 255, 0.2)', borderRadius: '4px' }}>v1.0</span>
                 </div>
-                <div className="desktop-only" style={{ fontSize: '10px', color: 'var(--text-dim)', fontFamily: 'var(--font-mono)' }}>
+                <div style={{ fontSize: '10px', color: 'var(--text-dim)', fontFamily: 'var(--font-mono)' }}>
                   built by <a href="https://github.com/RidDevs" target="_blank" rel="noreferrer" style={{ color: 'var(--primary)', textDecoration: 'none' }}>github.com/RidDevs</a>
                 </div>
               </div>
@@ -265,27 +265,80 @@ export default function Navbar({
             </button>
           </nav>
 
-          {/* Mobile Right Controls: Theme Switcher */}
-          <div className="mobile-only" style={{ alignItems: 'center', gap: '8px' }}>
+          {/* Mobile Right Controls: Bulk Import + Add Team + Theme */}
+          <div className="mobile-only mobile-flex-row" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '5px' }}>
+            <button
+              onClick={onOpenBulkImport}
+              title="Bulk Import CSV / JSON"
+              style={{
+                padding: '6px 8px',
+                borderRadius: '6px',
+                backgroundColor: 'rgba(76, 215, 246, 0.15)',
+                border: '1px solid var(--secondary)',
+                color: 'var(--secondary)',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '4px',
+                fontSize: '11px',
+                fontWeight: 800,
+                fontFamily: 'var(--font-mono)'
+              }}
+            >
+              <Upload size={13} />
+              <span>BULK</span>
+            </button>
+
+            <button
+              onClick={onOpenAddTeam}
+              title="Register Team"
+              style={{
+                padding: '6px 8px',
+                borderRadius: '6px',
+                backgroundColor: 'var(--primary)',
+                border: '1px solid var(--primary)',
+                color: '#ffffff',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '4px',
+                fontSize: '11px',
+                fontWeight: 800,
+                fontFamily: 'var(--font-mono)',
+                boxShadow: '0 0 10px var(--shadow-color)'
+              }}
+            >
+              <PlusSquare size={13} />
+              <span>+ TEAM</span>
+            </button>
+
             <button
               onClick={onToggleTheme}
               title={`Switch to ${theme === 'light' ? 'Dark Mode' : 'Clean Light Mode'}`}
               style={{
-                padding: '8px 12px',
+                padding: '6px 8px',
                 borderRadius: '6px',
                 backgroundColor: 'var(--bg-surface-high)',
                 border: '1px solid var(--outline)',
                 color: 'var(--text-main)',
                 display: 'flex',
                 alignItems: 'center',
-                gap: '6px',
-                fontSize: '12px',
+                gap: '4px',
+                fontSize: '11px',
                 fontWeight: 700,
-                fontFamily: 'var(--font-mono)'
+                fontFamily: 'var(--font-mono)',
+                cursor: 'pointer'
               }}
             >
-              {theme === 'light' ? <Moon size={16} color="var(--primary)" /> : <Sun size={16} color="#facc15" />}
-              <span>{theme === 'light' ? 'DARK' : 'LIGHT'}</span>
+              {theme === 'light' ? (
+                <>
+                  <Moon size={14} color="var(--primary)" />
+                  <span>DARK</span>
+                </>
+              ) : (
+                <>
+                  <Sun size={14} color="#facc15" />
+                  <span>LIGHT</span>
+                </>
+              )}
             </button>
           </div>
         </div>

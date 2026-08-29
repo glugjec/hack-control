@@ -353,6 +353,16 @@ input:focus, select:focus, textarea:focus {
   }
 
   .mobile-only {
+    display: block !important;
+  }
+
+  .mobile-flex-row {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+  }
+
+  nav.mobile-only {
     display: grid !important;
   }
 }
