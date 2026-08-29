@@ -128,16 +128,16 @@ export default function TeamDetailView({ team, commits, onBack, onSelectCommit, 
 
         {/* Mission Statement */}
         <div style={{
-          marginTop: '20px',
-          padding: '16px',
+          marginTop: '14px',
+          padding: '10px 14px',
           backgroundColor: 'var(--bg-surface-lowest)',
-          borderRadius: '8px',
+          borderRadius: '6px',
           border: '1px solid var(--outline)'
         }}>
-          <div style={{ fontFamily: 'var(--font-mono)', fontSize: '11px', color: 'var(--text-dim)', marginBottom: '4px' }}>
+          <div style={{ fontFamily: 'var(--font-mono)', fontSize: '10px', color: 'var(--text-dim)', marginBottom: '4px' }}>
             PROBLEM_STATEMENT & MISSION SPEC
           </div>
-          <p style={{ color: 'var(--text-main)', fontSize: '14px', lineHeight: 1.6 }}>
+          <p style={{ color: 'var(--text-main)', fontSize: '13px', lineHeight: 1.5 }}>
             {team.problemStatement}
           </p>
         </div>
@@ -147,36 +147,36 @@ export default function TeamDetailView({ team, commits, onBack, onSelectCommit, 
       <div style={{
         display: 'grid',
         gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-        gap: '20px',
-        marginBottom: '28px'
+        gap: '16px',
+        marginBottom: '20px'
       }}>
         {/* Telemetry Card */}
         <div style={{
           backgroundColor: 'var(--bg-surface)',
           border: '1px solid var(--outline)',
-          borderRadius: '10px',
-          padding: '20px'
+          borderRadius: '8px',
+          padding: '14px 16px'
         }}>
-          <h3 style={{ fontSize: '14px', fontFamily: 'var(--font-mono)', color: 'var(--primary-bright)', marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <Activity size={16} /> LIVE TELEMETRY METRICS
+          <h3 style={{ fontSize: '13px', fontFamily: 'var(--font-mono)', color: 'var(--primary-bright)', marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <Activity size={15} /> LIVE TELEMETRY METRICS
           </h3>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
-            <div style={{ backgroundColor: 'var(--bg-surface-lowest)', padding: '12px', borderRadius: '6px' }}>
-              <div style={{ fontSize: '11px', color: 'var(--text-dim)', fontFamily: 'var(--font-mono)' }}>TOTAL COMMITS</div>
-              <div style={{ fontSize: '20px', fontWeight: 800, color: 'var(--text-heading)', fontFamily: 'var(--font-mono)', marginTop: '4px' }}>
+          <div className="stats-grid-4">
+            <div style={{ backgroundColor: 'var(--bg-surface-lowest)', padding: '8px 10px', borderRadius: '4px' }}>
+              <div style={{ fontSize: '10px', color: 'var(--text-dim)', fontFamily: 'var(--font-mono)' }}>TOTAL COMMITS</div>
+              <div style={{ fontSize: '16px', fontWeight: 800, color: 'var(--text-heading)', fontFamily: 'var(--font-mono)', marginTop: '2px' }}>
                 {totalCommitsCount}
               </div>
             </div>
-            <div style={{ backgroundColor: 'var(--bg-surface-lowest)', padding: '12px', borderRadius: '6px' }}>
-              <div style={{ fontSize: '11px', color: 'var(--text-dim)', fontFamily: 'var(--font-mono)' }}>HEALTH SCORE</div>
-              <div style={{ fontSize: '20px', fontWeight: 800, color: 'var(--tertiary)', fontFamily: 'var(--font-mono)', marginTop: '4px' }}>
+            <div style={{ backgroundColor: 'var(--bg-surface-lowest)', padding: '8px 10px', borderRadius: '4px' }}>
+              <div style={{ fontSize: '10px', color: 'var(--text-dim)', fontFamily: 'var(--font-mono)' }}>HEALTH SCORE</div>
+              <div style={{ fontSize: '16px', fontWeight: 800, color: 'var(--tertiary)', fontFamily: 'var(--font-mono)', marginTop: '2px' }}>
                 {team.healthScore}%
               </div>
             </div>
-            <div style={{ backgroundColor: 'var(--bg-surface-lowest)', padding: '12px', borderRadius: '6px' }}>
-              <div style={{ fontSize: '11px', color: 'var(--text-dim)', fontFamily: 'var(--font-mono)' }}>LINES ADDED</div>
-              <div style={{ fontSize: '20px', fontWeight: 800, color: 'var(--tertiary)', fontFamily: 'var(--font-mono)', marginTop: '4px' }}>
+            <div style={{ backgroundColor: 'var(--bg-surface-lowest)', padding: '8px 10px', borderRadius: '4px' }}>
+              <div style={{ fontSize: '10px', color: 'var(--text-dim)', fontFamily: 'var(--font-mono)' }}>LINES ADDED</div>
+              <div style={{ fontSize: '16px', fontWeight: 800, color: 'var(--tertiary)', fontFamily: 'var(--font-mono)', marginTop: '2px' }}>
                 +{linesAddedCount.toLocaleString()}
               </div>
             </div>

@@ -60,7 +60,7 @@ export default function Leaderboard({ teams, commits, onSelectTeam, onSelectComm
   return (
     <div className="animate-slide-in" style={{ paddingBottom: '40px' }}>
       {/* Header Banner */}
-      <div style={{
+      <div className="leaderboard-header-card" style={{
         backgroundColor: 'var(--bg-surface)',
         border: '1px solid var(--outline)',
         borderRadius: '12px',
@@ -72,7 +72,7 @@ export default function Leaderboard({ teams, commits, onSelectTeam, onSelectComm
         flexWrap: 'wrap',
         gap: '16px'
       }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '16px', minWidth: 0, flex: 1 }}>
           <div style={{
             width: '48px',
             height: '48px',
@@ -81,30 +81,31 @@ export default function Leaderboard({ teams, commits, onSelectTeam, onSelectComm
             borderRadius: '8px',
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'center'
+            justifyContent: 'center',
+            flexShrink: 0
           }}>
             <Trophy size={24} color="var(--tertiary)" />
           </div>
-          <div>
-            <h1 style={{ fontSize: '24px', fontWeight: 800, color: 'var(--text-heading)', letterSpacing: '0.02em' }}>
+          <div style={{ minWidth: 0, flex: 1 }}>
+            <h1 className="responsive-title" style={{ fontSize: '24px', fontWeight: 800, color: 'var(--text-heading)', letterSpacing: '0.02em', overflowWrap: 'break-word', wordBreak: 'break-word' }}>
               HACKATHON_LEADERBOARD // TOP TEAMS
             </h1>
-            <p style={{ fontSize: '13px', color: 'var(--text-dim)', fontFamily: 'var(--font-mono)' }}>
+            <p style={{ fontSize: '12px', color: 'var(--text-dim)', fontFamily: 'var(--font-mono)', overflowWrap: 'break-word' }}>
               RANKINGS BY COMMIT VELOCITY, RECENT COMMIT DATES & CODE HEALTH
             </p>
           </div>
         </div>
 
         {/* Search & Filters */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap' }}>
-          <div style={{ position: 'relative' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap', width: '100%', maxWidth: '420px' }}>
+          <div style={{ position: 'relative', flex: 1, minWidth: '160px' }}>
             <Search size={16} color="var(--text-dim)" style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)' }} />
             <input
               type="text"
               placeholder="Search team or repo..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              style={{ paddingLeft: '36px', width: '220px', fontSize: '13px' }}
+              style={{ paddingLeft: '36px', width: '100%', fontSize: '13px' }}
             />
           </div>
 
@@ -133,7 +134,7 @@ export default function Leaderboard({ teams, commits, onSelectTeam, onSelectComm
         boxShadow: '0 8px 30px rgba(0, 0, 0, 0.4)'
       }}>
         <div style={{ overflowX: 'auto' }}>
-          <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontFamily: 'var(--font-sans)' }}>
+          <table className="leaderboard-table" style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontFamily: 'var(--font-sans)' }}>
             <thead>
               <tr style={{
                 backgroundColor: 'var(--bg-surface-lowest)',
@@ -143,13 +144,13 @@ export default function Leaderboard({ teams, commits, onSelectTeam, onSelectComm
                 color: 'var(--text-dim)',
                 letterSpacing: '0.05em'
               }}>
-                <th style={{ padding: '16px 20px', width: '60px' }}>RANK</th>
-                <th style={{ padding: '16px 20px' }}>TEAM NAME & REPO</th>
-                <th style={{ padding: '16px 20px' }}>CATEGORY</th>
-                <th style={{ padding: '16px 20px', textAlign: 'center' }}>TOTAL COMMITS</th>
-                <th style={{ padding: '16px 20px', textAlign: 'center' }}>LAST COMMIT DATE</th>
-                <th style={{ padding: '16px 20px', textAlign: 'center' }}>LINES (+ / -)</th>
-                <th style={{ padding: '16px 20px', textAlign: 'center' }}>
+                <th style={{ padding: '10px 14px', width: '50px' }}>RANK</th>
+                <th style={{ padding: '10px 14px' }}>TEAM NAME & REPO</th>
+                <th className="desktop-only" style={{ padding: '10px 14px' }}>CATEGORY</th>
+                <th style={{ padding: '10px 14px', textAlign: 'center' }}>COMMITS</th>
+                <th className="desktop-only" style={{ padding: '10px 14px', textAlign: 'center' }}>LAST COMMIT</th>
+                <th className="desktop-only" style={{ padding: '10px 14px', textAlign: 'center' }}>LINES (+ / -)</th>
+                <th style={{ padding: '10px 14px', textAlign: 'center' }}>
                   <div
                     onClick={() => setIsHealthModalOpen(true)}
                     style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', cursor: 'pointer', color: 'var(--secondary)' }}
@@ -158,13 +159,13 @@ export default function Leaderboard({ teams, commits, onSelectTeam, onSelectComm
                     HEALTH <HelpCircle size={13} />
                   </div>
                 </th>
-                <th style={{ padding: '16px 20px', textAlign: 'right' }}>ACTIONS</th>
+                <th className="desktop-only" style={{ padding: '10px 14px', textAlign: 'right' }}>ACTIONS</th>
               </tr>
             </thead>
             <tbody>
               {sortedTeams.length === 0 ? (
                 <tr>
-                  <td colSpan={8} style={{ padding: '40px', textAlign: 'center', color: 'var(--text-dim)', fontFamily: 'var(--font-mono)' }}>
+                  <td colSpan={8} style={{ padding: '30px', textAlign: 'center', color: 'var(--text-dim)', fontFamily: 'var(--font-mono)' }}>
                     No active teams found on leaderboard. Register a team or import teams to begin tracking commit activity.
                   </td>
                 </tr>
@@ -180,7 +181,7 @@ export default function Leaderboard({ teams, commits, onSelectTeam, onSelectComm
                         onClick={() => onSelectTeam(team)}
                         style={{
                           borderBottom: '1px solid var(--outline)',
-                          backgroundColor: isExpanded ? 'var(--bg-surface-high)' : (idx % 2 === 0 ? 'var(--bg-surface-low)' : 'var(--bg-surface)'),
+                          backgroundColor: isExpanded ? 'var(--bg-surface-high)' : 'transparent',
                           cursor: 'pointer',
                           transition: 'background-color 0.15s ease'
                         }}
@@ -188,22 +189,19 @@ export default function Leaderboard({ teams, commits, onSelectTeam, onSelectComm
                           if (!isExpanded) e.currentTarget.style.backgroundColor = 'var(--bg-surface-high)';
                         }}
                         onMouseOut={(e) => {
-                          if (!isExpanded) e.currentTarget.style.backgroundColor = idx % 2 === 0 ? 'var(--bg-surface-low)' : 'var(--bg-surface)';
+                          if (!isExpanded) e.currentTarget.style.backgroundColor = 'transparent';
                         }}
                       >
                         {/* Rank */}
-                        <td style={{ padding: '16px 20px' }}>
+                        <td style={{ padding: '10px 14px', fontWeight: 800, fontFamily: 'var(--font-mono)' }}>
                           <span style={{
-                            fontFamily: 'var(--font-mono)',
-                            fontWeight: 800,
-                            fontSize: '14px',
                             color: rankNum === 1 ? '#eab308' : rankNum === 2 ? 'var(--secondary)' : rankNum === 3 ? '#d97706' : 'var(--text-dim)',
                             display: 'inline-flex',
                             alignItems: 'center',
                             justifyContent: 'center',
-                            width: '28px',
-                            height: '28px',
-                            borderRadius: '6px',
+                            width: '24px',
+                            height: '24px',
+                            borderRadius: '4px',
                             backgroundColor: isTop3 ? 'var(--bg-surface-high)' : 'transparent',
                             border: isTop3 ? '1px solid var(--outline)' : 'none'
                           }}>
@@ -212,12 +210,12 @@ export default function Leaderboard({ teams, commits, onSelectTeam, onSelectComm
                         </td>
 
                         {/* Team Name & Repo */}
-                        <td style={{ padding: '16px 20px' }}>
-                          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                        <td style={{ padding: '10px 14px' }}>
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                             <div style={{
-                              width: '32px',
-                              height: '32px',
-                              borderRadius: '6px',
+                              width: '26px',
+                              height: '26px',
+                              borderRadius: '4px',
                               backgroundColor: `${team.avatarColor || 'var(--primary)'}25`,
                               border: `1px solid ${team.avatarColor || 'var(--primary)'}`,
                               color: team.avatarColor || 'var(--primary)',
@@ -225,16 +223,23 @@ export default function Leaderboard({ teams, commits, onSelectTeam, onSelectComm
                               alignItems: 'center',
                               justifyContent: 'center',
                               fontWeight: 800,
-                              fontSize: '12px',
+                              fontSize: '11px',
                               fontFamily: 'var(--font-mono)'
                             }}>
                               {team.name.substring(0, 2).toUpperCase()}
                             </div>
-                            <div>
-                              <div style={{ fontWeight: 700, color: 'var(--text-heading)', fontSize: '14px' }}>
+                             <div style={{ minWidth: 0 }}>
+                              <div style={{ fontWeight: 700, color: 'var(--text-heading)', fontSize: '13px' }}>
                                 {team.name}
                               </div>
-                              <div style={{ fontSize: '11px', color: 'var(--text-dim)', fontFamily: 'var(--font-mono)' }}>
+                              <div style={{
+                                fontSize: '10px',
+                                color: 'var(--text-dim)',
+                                fontFamily: 'var(--font-mono)',
+                                overflowWrap: 'anywhere',
+                                wordBreak: 'break-all',
+                                maxWidth: '160px'
+                              }}>
                                 {team.repo}
                               </div>
                             </div>
@@ -242,11 +247,11 @@ export default function Leaderboard({ teams, commits, onSelectTeam, onSelectComm
                         </td>
 
                         {/* Category */}
-                        <td style={{ padding: '16px 20px' }}>
+                        <td className="desktop-only" style={{ padding: '10px 14px' }}>
                           <span style={{
                             fontFamily: 'var(--font-mono)',
-                            fontSize: '11px',
-                            padding: '3px 8px',
+                            fontSize: '10px',
+                            padding: '2px 6px',
                             borderRadius: '4px',
                             backgroundColor: 'var(--bg-surface-high)',
                             border: '1px solid var(--outline)',
@@ -257,7 +262,7 @@ export default function Leaderboard({ teams, commits, onSelectTeam, onSelectComm
                         </td>
 
                         {/* Total Commits */}
-                        <td style={{ padding: '16px 20px', textAlign: 'center' }}>
+                        <td style={{ padding: '10px 14px', textAlign: 'center' }}>
                           <span style={{
                             fontFamily: 'var(--font-mono)',
                             fontWeight: 800,
@@ -269,42 +274,42 @@ export default function Leaderboard({ teams, commits, onSelectTeam, onSelectComm
                         </td>
 
                         {/* Last Commit Date Column */}
-                        <td style={{ padding: '16px 20px', textAlign: 'center' }}>
+                        <td className="desktop-only" style={{ padding: '10px 14px', textAlign: 'center' }}>
                           <span style={{
                             fontFamily: 'var(--font-mono)',
-                            fontSize: '12px',
+                            fontSize: '11px',
                             color: team.latestCommit ? 'var(--tertiary)' : 'var(--text-dim)',
                             display: 'inline-flex',
                             alignItems: 'center',
                             gap: '4px',
                             fontWeight: 600
                           }}>
-                            <Calendar size={13} color="var(--secondary)" />
+                            <Calendar size={12} color="var(--secondary)" />
                             {team.latestCommitDateStr}
                           </span>
                         </td>
 
                         {/* Lines Changed */}
-                        <td style={{ padding: '16px 20px', textAlign: 'center' }}>
-                          <div style={{ fontFamily: 'var(--font-mono)', fontSize: '13px' }}>
+                        <td className="desktop-only" style={{ padding: '10px 14px', textAlign: 'center' }}>
+                          <div style={{ fontFamily: 'var(--font-mono)', fontSize: '12px' }}>
                             <span style={{ color: 'var(--tertiary)', fontWeight: 700 }}>+{(team.linesAdded || 0).toLocaleString()}</span>
                             <span style={{ color: 'var(--error)', marginLeft: '6px' }}>-{(team.linesDeleted || 0).toLocaleString()}</span>
                           </div>
                         </td>
 
                         {/* Health */}
-                        <td style={{ padding: '16px 20px', textAlign: 'center' }}>
+                        <td style={{ padding: '10px 14px', textAlign: 'center' }}>
                           <div
                             onClick={(e) => {
                               e.stopPropagation();
                               setIsHealthModalOpen(true);
                             }}
-                            style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}
+                            style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', cursor: 'pointer' }}
                             title="Click to view Health Score formula details"
                           >
                             <div style={{
-                              width: '60px',
-                              height: '6px',
+                              width: '50px',
+                              height: '5px',
                               backgroundColor: 'var(--bg-surface-lowest)',
                               borderRadius: '3px',
                               overflow: 'hidden'
@@ -315,14 +320,14 @@ export default function Leaderboard({ teams, commits, onSelectTeam, onSelectComm
                                 backgroundColor: team.computedHealth > 85 ? 'var(--tertiary)' : team.computedHealth > 70 ? 'var(--secondary)' : 'var(--error)'
                               }} />
                             </div>
-                            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '12px', fontWeight: 700, color: 'var(--text-main)' }}>
+                            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '11px', fontWeight: 700, color: 'var(--text-main)' }}>
                               {team.computedHealth}%
                             </span>
                           </div>
                         </td>
 
                         {/* Actions: View Commits & View Team */}
-                        <td style={{ padding: '16px 20px', textAlign: 'right' }}>
+                        <td className="desktop-only" style={{ padding: '10px 14px', textAlign: 'right' }}>
                           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: '8px' }}>
                             <button
                               onClick={(e) => toggleExpand(team.id, e)}

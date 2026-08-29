@@ -126,12 +126,7 @@ export default function MetricsHeader({
   ];
 
   return (
-    <div style={{
-      display: 'grid',
-      gridTemplateColumns: 'repeat(auto-fit, minmax(210px, 1fr))',
-      gap: '16px',
-      marginBottom: '28px'
-    }}>
+    <div className="metrics-grid">
       {metrics.map((m, idx) => {
         const Icon = m.icon;
         return (
@@ -141,13 +136,13 @@ export default function MetricsHeader({
               backgroundColor: 'var(--bg-surface)',
               border: '1px solid var(--outline)',
               borderRadius: '8px',
-              padding: '16px 20px',
+              padding: '10px 14px',
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'space-between',
               position: 'relative',
               overflow: 'hidden',
-              boxShadow: `0 4px 12px ${m.glow}`,
+              boxShadow: `0 2px 8px ${m.glow}`,
               transition: 'transform 0.2s, border-color 0.2s'
             }}
             onMouseOver={(e) => {
@@ -165,37 +160,37 @@ export default function MetricsHeader({
               top: 0,
               left: 0,
               right: 0,
-              height: '3px',
+              height: '2px',
               backgroundColor: m.color
             }} />
 
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '8px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '4px' }}>
               <span style={{
                 fontFamily: 'var(--font-mono)',
-                fontSize: '11px',
+                fontSize: '10px',
                 fontWeight: 700,
                 color: 'var(--text-dim)',
-                letterSpacing: '0.08em'
+                letterSpacing: '0.06em'
               }}>
                 {m.label}
               </span>
-              <Icon size={18} color={m.color} />
+              <Icon size={15} color={m.color} />
             </div>
 
             <div>
               <div style={{
                 fontFamily: 'var(--font-mono)',
-                fontSize: '26px',
+                fontSize: '20px',
                 fontWeight: 800,
                 color: 'var(--text-heading)',
-                lineHeight: 1.2
+                lineHeight: 1.1
               }}>
                 {m.value}
               </div>
               <div style={{
-                fontSize: '11px',
+                fontSize: '10px',
                 color: 'var(--text-muted)',
-                marginTop: '4px',
+                marginTop: '2px',
                 fontFamily: 'var(--font-sans)'
               }}>
                 {m.change}

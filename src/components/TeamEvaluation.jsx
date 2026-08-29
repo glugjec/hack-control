@@ -260,7 +260,7 @@ export default function TeamEvaluation({ teams, commits, onNavigateToTeam }) {
   return (
     <div className="animate-slide-in" style={{ paddingBottom: '40px' }}>
       {/* Top Banner */}
-      <div style={{
+      <div className="leaderboard-header-card" style={{
         backgroundColor: 'var(--bg-surface)',
         border: '1px solid var(--outline)',
         borderRadius: '12px',
@@ -270,9 +270,11 @@ export default function TeamEvaluation({ teams, commits, onNavigateToTeam }) {
         alignItems: 'center',
         justifyContent: 'space-between',
         flexWrap: 'wrap',
-        gap: '16px'
+        gap: '16px',
+        width: '100%',
+        boxSizing: 'border-box'
       }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '16px', minWidth: 0, flex: 1 }}>
           <div style={{
             width: '48px',
             height: '48px',
@@ -281,30 +283,33 @@ export default function TeamEvaluation({ teams, commits, onNavigateToTeam }) {
             borderRadius: '8px',
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'center'
+            justifyContent: 'center',
+            flexShrink: 0
           }}>
             <ClipboardCheck size={26} color="var(--primary-bright)" />
           </div>
-          <div>
-            <h1 style={{ fontSize: '24px', fontWeight: 800, color: 'var(--text-heading)', letterSpacing: '0.02em', margin: 0 }}>
+          <div style={{ minWidth: 0, flex: 1 }}>
+            <h1 className="responsive-title" style={{ fontSize: '24px', fontWeight: 800, color: 'var(--text-heading)', letterSpacing: '0.02em', margin: 0, overflowWrap: 'break-word', wordBreak: 'break-word' }}>
               TEAM_EVALUATION // JUDGING & NOTES DESK
             </h1>
-            <p style={{ fontSize: '13px', color: 'var(--text-dim)', fontFamily: 'var(--font-mono)', margin: '4px 0 0' }}>
+            <p style={{ fontSize: '12px', color: 'var(--text-dim)', fontFamily: 'var(--font-mono)', margin: '4px 0 0', overflowWrap: 'break-word' }}>
               EVALUATE TEAMS, LOG TIMESTAMPTED NOTES, & TRACK SCORING RUBRICS
             </p>
           </div>
         </div>
 
         {/* Judge Name Input & Export */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap', width: '100%', maxWidth: '480px' }}>
           <div style={{
             display: 'flex',
             alignItems: 'center',
             gap: '8px',
             backgroundColor: 'var(--bg-surface-lowest)',
             border: '1px solid var(--outline)',
-            padding: '6px 12px',
-            borderRadius: '6px'
+            padding: '8px 12px',
+            borderRadius: '6px',
+            flex: 1,
+            minWidth: '180px'
           }}>
             <User size={15} color="var(--primary-bright)" />
             <span style={{ fontSize: '11px', fontFamily: 'var(--font-mono)', color: 'var(--text-dim)', fontWeight: 700 }}>
@@ -321,7 +326,7 @@ export default function TeamEvaluation({ teams, commits, onNavigateToTeam }) {
                 color: 'var(--text-heading)',
                 fontWeight: 700,
                 fontSize: '13px',
-                width: '130px',
+                width: '100%',
                 outline: 'none',
                 fontFamily: 'var(--font-mono)'
               }}
@@ -340,9 +345,11 @@ export default function TeamEvaluation({ teams, commits, onNavigateToTeam }) {
               fontWeight: 800,
               display: 'flex',
               alignItems: 'center',
+              justifyContent: 'center',
               gap: '6px',
               cursor: 'pointer',
-              fontFamily: 'var(--font-mono)'
+              fontFamily: 'var(--font-mono)',
+              flexWrap: 'nowrap'
             }}
           >
             <Download size={15} /> EXPORT_EVALUATION_REPORT
@@ -367,11 +374,7 @@ export default function TeamEvaluation({ teams, commits, onNavigateToTeam }) {
           </p>
         </div>
       ) : (
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'minmax(280px, 320px) minmax(0, 1fr)',
-          gap: '24px'
-        }}>
+        <div className="evaluation-grid">
           {/* LEFT SIDEBAR: TEAM ROSTER SELECTOR */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
             <div style={{
@@ -407,34 +410,34 @@ export default function TeamEvaluation({ teams, commits, onNavigateToTeam }) {
                       key={t.id}
                       onClick={() => setSelectedTeamId(t.id)}
                       style={{
-                        padding: '12px',
-                        borderRadius: '8px',
+                        padding: '8px 10px',
+                        borderRadius: '6px',
                         backgroundColor: isSelected ? 'var(--bg-surface-high)' : 'var(--bg-surface-lowest)',
                         border: `1px solid ${isSelected ? 'var(--primary)' : 'var(--outline)'}`,
                         cursor: 'pointer',
                         transition: 'all 0.15s ease'
                       }}
                     >
-                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '4px' }}>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '3px' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
                           <div style={{
-                            width: '10px',
-                            height: '10px',
+                            width: '8px',
+                            height: '8px',
                             borderRadius: '50%',
                             backgroundColor: t.avatarColor || 'var(--primary)'
                           }} />
-                          <span style={{ fontWeight: 800, fontSize: '14px', color: isSelected ? 'var(--primary-bright)' : 'var(--text-heading)' }}>
+                          <span style={{ fontWeight: 800, fontSize: '13px', color: isSelected ? 'var(--primary-bright)' : 'var(--text-heading)' }}>
                             {t.name}
                           </span>
                         </div>
                         {tTotalScore !== null && (
                           <span style={{
-                            fontSize: '11px',
+                            fontSize: '10px',
                             fontWeight: 800,
                             fontFamily: 'var(--font-mono)',
                             color: 'var(--tertiary)',
                             backgroundColor: 'rgba(78, 222, 163, 0.12)',
-                            padding: '2px 6px',
+                            padding: '1px 5px',
                             borderRadius: '4px'
                           }}>
                             {tTotalScore}/100 pts
@@ -442,16 +445,16 @@ export default function TeamEvaluation({ teams, commits, onNavigateToTeam }) {
                         )}
                       </div>
 
-                      <div style={{ fontSize: '11px', color: 'var(--text-dim)', fontFamily: 'var(--font-mono)', marginBottom: '8px' }}>
+                      <div style={{ fontSize: '10px', color: 'var(--text-dim)', fontFamily: 'var(--font-mono)', marginBottom: '4px' }}>
                         {t.repo}
                       </div>
 
-                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '11px', fontFamily: 'var(--font-mono)' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '10px', fontFamily: 'var(--font-mono)' }}>
                         <span style={{ color: 'var(--secondary)' }}>
                           {commits.filter(c => c.teamId === t.id || c.teamName === t.name).length} commits
                         </span>
                         <span style={{ color: 'var(--text-muted)', display: 'flex', alignItems: 'center', gap: '4px' }}>
-                          <MessageSquare size={12} /> {teamNoteCount} notes
+                          <MessageSquare size={11} /> {teamNoteCount} notes
                         </span>
                       </div>
                     </div>
@@ -465,8 +468,8 @@ export default function TeamEvaluation({ teams, commits, onNavigateToTeam }) {
               <div style={{
                 backgroundColor: 'var(--bg-surface)',
                 border: '1px solid var(--outline)',
-                borderRadius: '12px',
-                padding: '16px'
+                borderRadius: '8px',
+                padding: '10px 12px'
               }}>
                 <div style={{ fontSize: '12px', fontWeight: 800, fontFamily: 'var(--font-mono)', color: 'var(--primary-bright)', marginBottom: '10px', display: 'flex', alignItems: 'center', gap: '6px' }}>
                   <FolderGit2 size={14} /> LIVE TELEMETRY SNAPSHOT

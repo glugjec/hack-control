@@ -333,7 +333,7 @@ function App() {
         onToggleTheme={toggleTheme}
       />
 
-      <main style={{ flex: 1, width: '100%', maxWidth: '1400px', margin: '0 auto', padding: '24px 20px' }}>
+      <main className="main-content-container" style={{ flex: 1, width: '100%', maxWidth: '1400px', margin: '0 auto', padding: '24px 20px' }}>
         {/* GitHub API Warning Banner if Rate Limited */}
         {apiError && (
           <div style={{

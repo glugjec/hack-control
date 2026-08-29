@@ -33,36 +33,31 @@ export default function ActivityFeed({ commits, teams, onSelectCommit, onSelectT
   return (
     <div className="animate-slide-in" style={{ paddingBottom: '40px' }}>
       {/* Category Overview Bar */}
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-        gap: '14px',
-        marginBottom: '24px'
-      }}>
+      <div className="category-grid">
         {categoryStats.map((cs, idx) => (
           <div
             key={idx}
             style={{
               backgroundColor: 'var(--bg-surface)',
               border: '1px solid var(--outline)',
-              borderRadius: '8px',
-              padding: '14px 16px',
+              borderRadius: '6px',
+              padding: '8px 12px',
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'space-between'
             }}
           >
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-              <span style={{ fontSize: '11px', fontFamily: 'var(--font-mono)', color: 'var(--text-dim)', fontWeight: 700 }}>
+              <span style={{ fontSize: '10px', fontFamily: 'var(--font-mono)', color: 'var(--text-dim)', fontWeight: 700 }}>
                 {cs.category}
               </span>
-              <Layers size={14} color="var(--secondary)" />
+              <Layers size={13} color="var(--secondary)" />
             </div>
-            <div style={{ marginTop: '10px', display: 'flex', alignItems: 'baseline', justifyContent: 'space-between' }}>
-              <span style={{ fontSize: '20px', fontWeight: 800, fontFamily: 'var(--font-mono)', color: 'var(--text-heading)' }}>
+            <div style={{ marginTop: '6px', display: 'flex', alignItems: 'baseline', justifyContent: 'space-between' }}>
+              <span style={{ fontSize: '16px', fontWeight: 800, fontFamily: 'var(--font-mono)', color: 'var(--text-heading)' }}>
                 {cs.commitsCount}
               </span>
-              <span style={{ fontSize: '11px', color: 'var(--text-muted)' }}>
+              <span style={{ fontSize: '10px', color: 'var(--text-muted)' }}>
                 {cs.teamsCount} teams
               </span>
             </div>
@@ -74,9 +69,9 @@ export default function ActivityFeed({ commits, teams, onSelectCommit, onSelectT
       <div style={{
         backgroundColor: 'var(--bg-surface)',
         border: '1px solid var(--outline)',
-        borderRadius: '12px',
-        padding: '24px',
-        boxShadow: '0 8px 30px rgba(0, 0, 0, 0.4)'
+        borderRadius: '10px',
+        padding: '14px 16px',
+        boxShadow: '0 4px 20px rgba(0, 0, 0, 0.4)'
       }}>
         {/* Stream Filter Controls */}
         <div style={{
@@ -84,18 +79,18 @@ export default function ActivityFeed({ commits, teams, onSelectCommit, onSelectT
           alignItems: 'center',
           justifyContent: 'space-between',
           flexWrap: 'wrap',
-          gap: '16px',
-          marginBottom: '20px',
-          paddingBottom: '16px',
+          gap: '12px',
+          marginBottom: '14px',
+          paddingBottom: '10px',
           borderBottom: '1px solid var(--outline)'
         }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-            <Radio size={20} color="var(--secondary)" />
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <Radio size={16} color="var(--secondary)" />
             <div>
-              <h2 style={{ fontSize: '18px', fontWeight: 800, color: 'var(--text-heading)', letterSpacing: '0.02em' }}>
+              <h2 style={{ fontSize: '15px', fontWeight: 800, color: 'var(--text-heading)', letterSpacing: '0.02em' }}>
                 GLOBAL_EVENT_STREAM
               </h2>
-              <p style={{ fontSize: '12px', color: 'var(--text-dim)', fontFamily: 'var(--font-mono)' }}>
+              <p style={{ fontSize: '11px', color: 'var(--text-dim)', fontFamily: 'var(--font-mono)' }}>
                 REAL-TIME AUDIT TRAIL OF ALL HACKATHON COMMIT ACTIVITIES
               </p>
             </div>
@@ -150,43 +145,37 @@ export default function ActivityFeed({ commits, teams, onSelectCommit, onSelectT
                 <div
                   key={c.id}
                   onClick={() => onSelectCommit(c)}
+                  className="commit-card"
                   style={{
                     backgroundColor: isError ? 'rgba(255, 180, 171, 0.05)' : 'var(--bg-surface-lowest)',
                     border: `1px solid ${isError ? 'var(--error)' : 'var(--outline)'}`,
-                    borderRadius: '8px',
-                    padding: '16px 20px',
-                    cursor: 'pointer',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                    gap: '16px',
-                    transition: 'all 0.2s ease'
                   }}
                   onMouseOver={(e) => {
                     e.currentTarget.style.borderColor = isError ? 'var(--error)' : 'var(--secondary)';
-                    e.currentTarget.style.transform = 'translateX(4px)';
+                    e.currentTarget.style.transform = 'translateX(2px)';
                   }}
                   onMouseOut={(e) => {
                     e.currentTarget.style.borderColor = isError ? 'var(--error)' : 'var(--outline)';
                     e.currentTarget.style.transform = 'translateX(0)';
                   }}
                 >
-                  <div style={{ display: 'flex', alignItems: 'flex-start', gap: '14px' }}>
+                  <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', flex: 1, minWidth: 0 }}>
                     <div style={{
                       marginTop: '2px',
-                      width: '32px',
-                      height: '32px',
-                      borderRadius: '6px',
+                      width: '26px',
+                      height: '26px',
+                      borderRadius: '4px',
                       backgroundColor: isError ? 'rgba(255, 180, 171, 0.2)' : 'var(--bg-surface-high)',
                       display: 'flex',
                       alignItems: 'center',
-                      justifyContent: 'center'
+                      justifyContent: 'center',
+                      flexShrink: 0
                     }}>
-                      {isError ? <AlertTriangle size={16} color="var(--error)" /> : <GitCommit size={16} color="var(--secondary)" />}
+                      {isError ? <AlertTriangle size={14} color="var(--error)" /> : <GitCommit size={14} color="var(--secondary)" />}
                     </div>
 
-                    <div>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px', flexWrap: 'wrap' }}>
+                    <div style={{ minWidth: 0, overflowWrap: 'break-word', wordBreak: 'break-word', flex: 1 }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '4px', flexWrap: 'wrap' }}>
                         <span 
                           onClick={(e) => {
                             e.stopPropagation();
@@ -202,27 +191,27 @@ export default function ActivityFeed({ commits, teams, onSelectCommit, onSelectT
                         >
                           {c.teamName}
                         </span>
-                        <span style={{ fontSize: '12px', color: 'var(--text-dim)' }}>•</span>
-                        <span style={{ fontFamily: 'var(--font-mono)', fontSize: '11px', color: 'var(--secondary)' }}>
+                        <span style={{ fontSize: '11px', color: 'var(--text-dim)' }}>•</span>
+                        <span style={{ fontFamily: 'var(--font-mono)', fontSize: '10px', color: 'var(--secondary)' }}>
                           [{c.branch}]
                         </span>
-                        <span style={{ fontSize: '11px', color: 'var(--text-muted)' }}>by {c.author}</span>
+                        <span style={{ fontSize: '10px', color: 'var(--text-muted)' }}>by {c.author}</span>
                       </div>
 
-                      <div style={{ color: 'var(--text-heading)', fontWeight: 600, fontSize: '14px', marginBottom: '4px' }}>
+                      <div style={{ color: 'var(--text-heading)', fontWeight: 600, fontSize: '13px', lineHeight: 1.35 }}>
                         {c.message}
                       </div>
 
                       {c.details && (
-                        <div style={{ fontSize: '12px', color: 'var(--text-muted)', fontFamily: 'var(--font-sans)', lineHeight: 1.4 }}>
+                        <div className="hide-on-mobile" style={{ fontSize: '11px', color: 'var(--text-muted)', fontFamily: 'var(--font-sans)', lineHeight: 1.4, marginTop: '2px' }}>
                           {c.details}
                         </div>
                       )}
                     </div>
                   </div>
 
-                  <div style={{ textAlign: 'right', whiteSpace: 'nowrap', display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '4px' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  <div className="commit-card-right">
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
                       {c.repoUrl && (
                         <a
                           href={c.repoUrl}
@@ -232,7 +221,7 @@ export default function ActivityFeed({ commits, teams, onSelectCommit, onSelectT
                           title="Open Repository"
                           style={{
                             color: 'var(--secondary)',
-                            fontSize: '11px',
+                            fontSize: '10px',
                             fontFamily: 'var(--font-mono)',
                             textDecoration: 'none',
                             display: 'inline-flex',
@@ -244,7 +233,7 @@ export default function ActivityFeed({ commits, teams, onSelectCommit, onSelectT
                             border: '1px solid var(--secondary)'
                           }}
                         >
-                          <FolderGit2 size={11} /> REPO
+                          <FolderGit2 size={10} /> REPO
                         </a>
                       )}
                       {c.htmlUrl && (
@@ -256,7 +245,7 @@ export default function ActivityFeed({ commits, teams, onSelectCommit, onSelectT
                           title="View Commit Diff on GitHub"
                           style={{
                             color: 'var(--primary-bright)',
-                            fontSize: '11px',
+                            fontSize: '10px',
                             fontFamily: 'var(--font-mono)',
                             textDecoration: 'none',
                             display: 'inline-flex',
@@ -268,15 +257,14 @@ export default function ActivityFeed({ commits, teams, onSelectCommit, onSelectT
                             border: '1px solid var(--primary-bright)'
                           }}
                         >
-                          <ExternalLink size={11} /> DIFF
+                          <ExternalLink size={10} /> DIFF
                         </a>
                       )}
-                      <span style={{
-                        display: 'inline-block',
+                      <span className="hide-on-mobile" style={{
                         fontFamily: 'var(--font-mono)',
-                        fontSize: '11px',
+                        fontSize: '10px',
                         fontWeight: 700,
-                        padding: '2px 8px',
+                        padding: '2px 6px',
                         borderRadius: '4px',
                         backgroundColor: 'var(--bg-surface-high)',
                         color: 'var(--primary-bright)'
@@ -284,7 +272,7 @@ export default function ActivityFeed({ commits, teams, onSelectCommit, onSelectT
                         {c.id}
                       </span>
                     </div>
-                    <div style={{ fontSize: '11px', color: 'var(--text-dim)' }}>
+                    <div style={{ fontSize: '10px', color: 'var(--text-dim)', fontFamily: 'var(--font-mono)' }}>
                       {c.timestamp}
                     </div>
                   </div>

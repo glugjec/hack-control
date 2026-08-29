@@ -119,55 +119,51 @@ export default function LiveDashboard({
       </div>
 
       {/* Main Grid: Live Feed Left (2 Columns) + Raw Terminal Stream Right (1 Column) */}
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'minmax(0, 2fr) minmax(0, 1fr)',
-        gap: '24px'
-      }}>
+      <div className="dashboard-grid">
         {/* Left Column: Live Commit Stream */}
         <div>
           <div style={{
             backgroundColor: 'var(--bg-surface)',
             border: '1px solid var(--outline)',
-            borderRadius: '12px',
-            padding: '24px',
-            boxShadow: '0 8px 30px rgba(0, 0, 0, 0.4)'
+            borderRadius: '10px',
+            padding: '14px 18px',
+            boxShadow: '0 4px 20px rgba(0, 0, 0, 0.4)'
           }}>
             {/* Header */}
             <div style={{
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between',
-              marginBottom: '20px',
-              paddingBottom: '16px',
+              marginBottom: '12px',
+              paddingBottom: '10px',
               borderBottom: '1px solid var(--outline)'
             }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <span className="pulse-dot" />
-                <h2 style={{ fontSize: '18px', fontWeight: 800, color: 'var(--text-heading)', letterSpacing: '0.02em' }}>
+                <h2 style={{ fontSize: '15px', fontWeight: 800, color: 'var(--text-heading)', letterSpacing: '0.02em' }}>
                   LIVE_FEED
                 </h2>
               </div>
-              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '11px', color: 'var(--secondary)', letterSpacing: '0.05em', fontWeight: 600 }}>
-                SORTED BY COMMIT DATE (MOST RECENT FIRST) | {commits.length} COMMITS VISIBLE
+              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '10px', color: 'var(--secondary)', letterSpacing: '0.05em', fontWeight: 600 }}>
+                SORTED BY COMMIT DATE | {commits.length} VISIBLE
               </span>
             </div>
 
             {/* Commit Cards List */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
               {commits.length === 0 ? (
                 <div style={{
-                  padding: '48px 24px',
+                  padding: '32px 16px',
                   textAlign: 'center',
                   backgroundColor: 'var(--bg-surface-lowest)',
                   borderRadius: '8px',
                   border: '1px dashed var(--outline)'
                 }}>
-                  <GitCommit size={32} color="var(--text-dim)" style={{ margin: '0 auto 12px' }} />
-                  <div style={{ fontWeight: 700, color: 'var(--text-heading)', fontSize: '15px' }}>
+                  <GitCommit size={24} color="var(--text-dim)" style={{ margin: '0 auto 8px' }} />
+                  <div style={{ fontWeight: 700, color: 'var(--text-heading)', fontSize: '14px' }}>
                     No Commit Telemetry Stream Recorded Yet
                   </div>
-                  <div style={{ fontSize: '12px', color: 'var(--text-dim)', marginTop: '6px', fontFamily: 'var(--font-mono)', maxWidth: '420px', margin: '6px auto 16px' }}>
+                  <div style={{ fontSize: '11px', color: 'var(--text-dim)', marginTop: '4px', fontFamily: 'var(--font-mono)', maxWidth: '420px', margin: '4px auto 12px' }}>
                     Register a team or import teams via CSV spreadsheet to begin monitoring real-time telemetry events.
                   </div>
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px' }}>
@@ -176,9 +172,9 @@ export default function LiveDashboard({
                       style={{
                         backgroundColor: 'var(--primary)',
                         color: '#ffffff',
-                        padding: '8px 16px',
-                        borderRadius: '6px',
-                        fontSize: '12px',
+                        padding: '6px 14px',
+                        borderRadius: '4px',
+                        fontSize: '11px',
                         fontWeight: 800
                       }}
                     >
@@ -196,10 +192,10 @@ export default function LiveDashboard({
                       style={{
                         backgroundColor: isError ? 'rgba(255, 180, 171, 0.05)' : 'var(--bg-surface-lowest)',
                         border: `1px solid ${isError ? 'var(--error)' : 'var(--outline)'}`,
-                        borderRadius: '8px',
-                        padding: '16px',
+                        borderRadius: '6px',
+                        padding: '10px 12px',
                         cursor: 'pointer',
-                        transition: 'all 0.2s ease',
+                        transition: 'all 0.15s ease',
                         position: 'relative',
                         overflow: 'hidden'
                       }}
@@ -274,24 +270,24 @@ export default function LiveDashboard({
                         </div>
 
                         {c.details && (
-                          <div style={{
-                            fontSize: '12px',
+                          <div className="hide-on-mobile" style={{
+                            fontSize: '11px',
                             color: isError ? 'var(--error)' : 'var(--text-muted)',
                             lineHeight: 1.4,
-                            marginBottom: '8px'
+                            marginBottom: '6px'
                           }}>
                             {c.details}
                           </div>
                         )}
 
-                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '6px' }}>
-                          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '11px', fontFamily: 'var(--font-mono)' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '6px', flexWrap: 'wrap', gap: '6px' }}>
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '10px', fontFamily: 'var(--font-mono)' }}>
                             <span style={{ color: 'var(--text-dim)' }}>author: {c.author}</span>
                             <span style={{ color: 'var(--tertiary)', fontWeight: 700 }}>+{c.linesAdded}</span>
                             <span style={{ color: 'var(--error)', fontWeight: 700 }}>-{c.linesDeleted}</span>
                           </div>
 
-                          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
                             {c.repoUrl && (
                               <a
                                 href={c.repoUrl}
@@ -301,19 +297,19 @@ export default function LiveDashboard({
                                 title="Open GitHub Repository"
                                 style={{
                                   color: 'var(--secondary)',
-                                  fontSize: '11px',
+                                  fontSize: '10px',
                                   fontFamily: 'var(--font-mono)',
                                   textDecoration: 'none',
                                   display: 'inline-flex',
                                   alignItems: 'center',
-                                  gap: '4px',
-                                  padding: '2px 8px',
+                                  gap: '3px',
+                                  padding: '2px 6px',
                                   borderRadius: '4px',
                                   backgroundColor: 'rgba(76, 215, 246, 0.1)',
                                   border: '1px solid var(--secondary)'
                                 }}
                               >
-                                <FolderGit2 size={12} /> REPO
+                                <FolderGit2 size={10} /> REPO
                               </a>
                             )}
                             {c.htmlUrl && (
@@ -325,30 +321,30 @@ export default function LiveDashboard({
                                 title="View Diff on GitHub"
                                 style={{
                                   color: 'var(--primary-bright)',
-                                  fontSize: '11px',
+                                  fontSize: '10px',
                                   fontFamily: 'var(--font-mono)',
                                   textDecoration: 'none',
                                   display: 'inline-flex',
                                   alignItems: 'center',
-                                  gap: '4px',
-                                  padding: '2px 8px',
+                                  gap: '3px',
+                                  padding: '2px 6px',
                                   borderRadius: '4px',
                                   backgroundColor: 'rgba(128, 131, 255, 0.1)',
                                   border: '1px solid var(--primary-bright)'
                                 }}
                               >
-                                <ExternalLink size={12} /> GITHUB_DIFF
+                                <ExternalLink size={10} /> DIFF
                               </a>
                             )}
                             <span style={{
                               fontFamily: 'var(--font-mono)',
-                              fontSize: '11px',
+                              fontSize: '10px',
                               color: 'var(--primary-bright)',
                               display: 'flex',
                               alignItems: 'center',
                               gap: '2px'
                             }}>
-                              DIFF_INSPECT <ChevronRight size={14} />
+                              <span className="desktop-only">INSPECT</span> <ChevronRight size={13} />
                             </span>
                           </div>
                         </div>
@@ -362,15 +358,74 @@ export default function LiveDashboard({
         </div>
 
         {/* Right Column: Terminal Stream & Teams Quick List */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
           {/* Terminal stdout Log Box */}
           <div style={{
             backgroundColor: '#040814',
             border: '1px solid var(--primary-dark)',
-            borderRadius: '12px',
-            padding: '16px',
+            borderRadius: '8px',
+            padding: '12px',
             fontFamily: 'var(--font-mono)',
-            boxShadow: '0 8px 30px rgba(0, 0, 0, 0.6)'
+            boxShadow: '0 4px 20px rgba(0, 0, 0, 0.6)'
+          }}>
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              marginBottom: '8px',
+              paddingBottom: '6px',
+              borderBottom: '1px solid var(--bg-surface-highest)'
+            }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '11px', color: 'var(--tertiary)', fontWeight: 700 }}>
+                <Terminal size={13} /> RAW_LOG_STREAM
+              </div>
+              <button
+                onClick={() => setIsLiveSyncing(!isLiveSyncing)}
+                style={{
+                  backgroundColor: 'transparent',
+                  color: isLiveSyncing ? 'var(--tertiary)' : 'var(--text-dim)',
+                  fontSize: '10px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '4px'
+                }}
+              >
+                {isLiveSyncing ? <Pause size={11} /> : <Play size={11} />}
+                {isLiveSyncing ? 'STREAMING' : 'PAUSED'}
+              </button>
+            </div>
+
+            <div style={{
+              height: '180px',
+              overflowY: 'auto',
+              fontSize: '10px',
+              color: 'var(--tertiary)',
+              lineHeight: 1.4,
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '3px'
+            }}>
+              {terminalLogs.length === 0 ? (
+                <div style={{ color: 'var(--text-dim)' }}>[SYSTEM] Initializing telemetry log pipeline...</div>
+              ) : (
+                terminalLogs.map((log, i) => (
+                  <div key={i} style={{ wordBreak: 'break-all' }}>
+                    <span style={{ color: 'var(--text-dim)' }}>[{log.timestamp}]</span>{' '}
+                    <span style={{ color: log.type === 'error' ? 'var(--error)' : 'var(--tertiary)' }}>{log.text}</span>
+                  </div>
+                ))
+              )}
+              <div ref={terminalEndRef} />
+            </div>
+          </div>
+
+          {/* Quick Active Teams Roster Panel */}
+          <div style={{
+            backgroundColor: 'var(--bg-surface)',
+            border: '1px solid var(--outline)',
+            borderRadius: '10px',
+            padding: '14px 16px',
+            boxShadow: '0 4px 20px rgba(0, 0, 0, 0.4)'
           }}>
             <div style={{
               display: 'flex',
@@ -378,142 +433,121 @@ export default function LiveDashboard({
               justifyContent: 'space-between',
               marginBottom: '12px',
               paddingBottom: '8px',
-              borderBottom: '1px solid var(--bg-surface-highest)'
+              borderBottom: '1px solid var(--outline)'
             }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '12px', color: 'var(--tertiary)', fontWeight: 700 }}>
-                <Terminal size={14} /> RAW_LOG_STREAM
+              <div style={{ fontSize: '13px', fontWeight: 800, color: 'var(--text-heading)', letterSpacing: '0.02em' }}>
+                MONITORED_TEAMS ({teams.length})
               </div>
               <button
-                onClick={() => setIsLiveSyncing(!isLiveSyncing)}
+                onClick={onOpenAddTeam}
                 style={{
-                  backgroundColor: 'transparent',
-                  color: isLiveSyncing ? 'var(--tertiary)' : 'var(--text-dim)',
-                  fontSize: '11px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '4px'
+                  backgroundColor: 'rgba(128, 131, 255, 0.15)',
+                  border: '1px solid var(--primary)',
+                  color: 'var(--primary-bright)',
+                  padding: '3px 8px',
+                  borderRadius: '4px',
+                  fontSize: '10px',
+                  fontWeight: 700
                 }}
               >
-                {isLiveSyncing ? <Pause size={12} /> : <Play size={12} />}
-                {isLiveSyncing ? 'STREAMING' : 'PAUSED'}
+                + ADD
               </button>
             </div>
 
-            <div style={{
-              height: '240px',
-              overflowY: 'auto',
-              fontSize: '11px',
-              color: 'var(--tertiary)',
-              lineHeight: 1.5,
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '4px'
-            }}>
-              {terminalLogs.length === 0 ? (
-                <div style={{ color: 'var(--text-dim)' }}>[SYSTEM] Initializing telemetry log pipeline...</div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', maxHeight: '340px', overflowY: 'auto' }}>
+              {teams.length === 0 ? (
+                <div style={{ fontSize: '11px', color: 'var(--text-dim)', textAlign: 'center', padding: '16px' }}>
+                  No teams registered.
+                </div>
               ) : (
-                terminalLogs.map((log, idx) => (
-                  <div key={idx} style={{ wordBreak: 'break-all', opacity: 1 - idx * 0.04 }}>
-                    {log}
+                teams.map((t) => (
+                  <div
+                    key={t.id}
+                    onClick={() => onSelectTeam(t)}
+                    style={{
+                      padding: '8px 10px',
+                      borderRadius: '6px',
+                      backgroundColor: 'var(--bg-surface-lowest)',
+                      border: '1px solid var(--outline)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                      cursor: 'pointer',
+                      transition: 'all 0.15s ease'
+                    }}
+                    onMouseOver={(e) => {
+                      e.currentTarget.style.borderColor = 'var(--primary)';
+                      e.currentTarget.style.backgroundColor = 'var(--bg-surface-high)';
+                    }}
+                    onMouseOut={(e) => {
+                      e.currentTarget.style.borderColor = 'var(--outline)';
+                      e.currentTarget.style.backgroundColor = 'var(--bg-surface-lowest)';
+                    }}
+                  >
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                      <div style={{
+                        width: '6px',
+                        height: '6px',
+                        borderRadius: '50%',
+                        backgroundColor: t.status === 'ACTIVE' ? 'var(--tertiary)' : 'var(--text-dim)'
+                      }} />
+                      <span style={{ fontWeight: 700, fontSize: '12px', color: 'var(--text-heading)' }}>{t.name}</span>
+                    </div>
+
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                      <span style={{ fontFamily: 'var(--font-mono)', fontSize: '10px', color: 'var(--secondary)' }}>
+                        {commits.filter(c => c.teamId === t.id || c.teamName === t.name).length} commits
+                      </span>
+                    
+                      {onEditTeam && (
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            onEditTeam(t);
+                          }}
+                          title="Edit Team Details"
+                          style={{
+                            background: 'none',
+                            border: 'none',
+                            color: 'var(--text-dim)',
+                            cursor: 'pointer',
+                            padding: '2px',
+                            display: 'flex',
+                            alignItems: 'center'
+                          }}
+                          onMouseOver={(e) => e.currentTarget.style.color = 'var(--primary)'}
+                          onMouseOut={(e) => e.currentTarget.style.color = 'var(--text-dim)'}
+                        >
+                          <Edit size={13} />
+                        </button>
+                      )}
+
+                      {onDeleteTeam && (
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            onDeleteTeam(t.id);
+                          }}
+                          title="Delete Team (Requires Confirmation)"
+                          style={{
+                            background: 'none',
+                            border: 'none',
+                            color: 'var(--text-dim)',
+                            cursor: 'pointer',
+                            padding: '2px',
+                            display: 'flex',
+                            alignItems: 'center'
+                          }}
+                          onMouseOver={(e) => e.currentTarget.style.color = 'var(--error)'}
+                          onMouseOut={(e) => e.currentTarget.style.color = 'var(--text-dim)'}
+                        >
+                          <Trash2 size={13} />
+                        </button>
+                      )}
+                    </div>
                   </div>
                 ))
               )}
-            </div>
-          </div>
-
-          {/* Quick Active Teams Roster Sidebar */}
-          <div style={{
-            backgroundColor: 'var(--bg-surface)',
-            border: '1px solid var(--outline)',
-            borderRadius: '12px',
-            padding: '20px'
-          }}>
-            <h3 style={{ fontSize: '14px', fontFamily: 'var(--font-mono)', color: 'var(--primary-bright)', marginBottom: '14px', fontWeight: 800 }}>
-              ACTIVE_TEAMS ({teams.length})
-            </h3>
-
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-              {teams.slice(0, 6).map((t) => (
-                <div
-                  key={t.id}
-                  onClick={() => onSelectTeam(t)}
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                    padding: '10px 12px',
-                    backgroundColor: 'var(--bg-surface-lowest)',
-                    borderRadius: '6px',
-                    border: '1px solid var(--outline)',
-                    cursor: 'pointer',
-                    transition: 'border-color 0.2s'
-                  }}
-                  onMouseOver={(e) => e.currentTarget.style.borderColor = 'var(--primary)'}
-                  onMouseOut={(e) => e.currentTarget.style.borderColor = 'var(--outline)'}
-                >
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                    <div style={{
-                      width: '8px',
-                      height: '8px',
-                      borderRadius: '50%',
-                      backgroundColor: t.avatarColor || 'var(--primary)'
-                    }} />
-                    <span style={{ fontWeight: 700, fontSize: '13px', color: 'var(--text-heading)' }}>{t.name}</span>
-                  </div>
-
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                    <span style={{ fontFamily: 'var(--font-mono)', fontSize: '11px', color: 'var(--secondary)' }}>
-                      {commits.filter(c => c.teamId === t.id || c.teamName === t.name).length} commits
-                    </span>
-                    
-                    {onEditTeam && (
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          onEditTeam(t);
-                        }}
-                        title="Edit Team Details"
-                        style={{
-                          background: 'none',
-                          border: 'none',
-                          color: 'var(--text-dim)',
-                          cursor: 'pointer',
-                          padding: '2px',
-                          display: 'flex',
-                          alignItems: 'center'
-                        }}
-                        onMouseOver={(e) => e.currentTarget.style.color = 'var(--primary)'}
-                        onMouseOut={(e) => e.currentTarget.style.color = 'var(--text-dim)'}
-                      >
-                        <Edit size={13} />
-                      </button>
-                    )}
-
-                    {onDeleteTeam && (
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          onDeleteTeam(t.id);
-                        }}
-                        title="Delete Team (Requires Confirmation)"
-                        style={{
-                          background: 'none',
-                          border: 'none',
-                          color: 'var(--text-dim)',
-                          cursor: 'pointer',
-                          padding: '2px',
-                          display: 'flex',
-                          alignItems: 'center'
-                        }}
-                        onMouseOver={(e) => e.currentTarget.style.color = 'var(--error)'}
-                        onMouseOut={(e) => e.currentTarget.style.color = 'var(--text-dim)'}
-                      >
-                        <Trash2 size={13} />
-                      </button>
-                    )}
-                  </div>
-                </div>
-              ))}
             </div>
           </div>
         </div>
