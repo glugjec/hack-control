@@ -16,18 +16,37 @@ export default function LiveDashboard({
   onResetHackathon
 }) {
   const [terminalLogs, setTerminalLogs] = useState([]);
-  const terminalEndRef = useRef(null);
+  const logsContainerRef = useRef(null);
 
   // Generate real-time raw stdout log entries when commits update
   useEffect(() => {
-    if (commits.length > 0) {
-      const latest = commits[0];
-      const logLine = `[${new Date().toLocaleTimeString()}] INFO git_sentinel::stream: commit=${latest.id} team=${latest.teamName} branch=${latest.branch} (+${latest.linesAdded}/-${latest.linesDeleted})`;
-      setTerminalLogs((prev) => [logLine, ...prev.slice(0, 19)]);
+    if (commits && commits.length > 0) {
+      const logs = commits.slice(0, 25).map((c) => {
+        const dateObj = c.date ? new Date(c.date) : new Date();
+        const timeStr = isNaN(dateObj.getTime()) ? new Date().toLocaleTimeString() : dateObj.toLocaleTimeString();
+        return {
+          timestamp: timeStr,
+          text: `INFO git_sentinel::stream: commit=${(c.id || '').slice(0, 7)} team="${c.teamName || 'Team'}" branch=${c.branch || 'main'} (+${c.linesAdded || 0}/-${c.linesDeleted || 0}) msg="${(c.message || '').replace(/"/g, "'").slice(0, 45)}"`,
+          type: c.type === 'error' ? 'error' : 'info'
+        };
+      });
+      setTerminalLogs(logs);
     } else {
-      setTerminalLogs([]);
+      setTerminalLogs([
+        {
+          timestamp: new Date().toLocaleTimeString(),
+          text: 'INFO git_sentinel::stream: Initializing telemetry log pipeline... Waiting for incoming commits.',
+          type: 'info'
+        }
+      ]);
     }
   }, [commits]);
+
+  useEffect(() => {
+    if (logsContainerRef.current) {
+      logsContainerRef.current.scrollTop = logsContainerRef.current.scrollHeight;
+    }
+  }, [terminalLogs]);
 
   const totalLoc = commits.length > 0 
     ? commits.reduce((acc, c) => acc + (c.linesAdded || 0), 0)
@@ -395,16 +414,19 @@ export default function LiveDashboard({
               </button>
             </div>
 
-            <div style={{
-              height: '180px',
-              overflowY: 'auto',
-              fontSize: '10px',
-              color: 'var(--tertiary)',
-              lineHeight: 1.4,
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '3px'
-            }}>
+            <div 
+              ref={logsContainerRef}
+              style={{
+                height: '180px',
+                overflowY: 'auto',
+                fontSize: '10px',
+                color: 'var(--tertiary)',
+                lineHeight: 1.4,
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '3px'
+              }}
+            >
               {terminalLogs.length === 0 ? (
                 <div style={{ color: 'var(--text-dim)' }}>[SYSTEM] Initializing telemetry log pipeline...</div>
               ) : (
@@ -415,7 +437,6 @@ export default function LiveDashboard({
                   </div>
                 ))
               )}
-              <div ref={terminalEndRef} />
             </div>
           </div>
 
