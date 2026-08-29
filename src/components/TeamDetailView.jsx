@@ -58,7 +58,7 @@ export default function TeamDetailView({ team, commits, onBack, onSelectCommit, 
             </div>
             <div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap' }}>
-                <h1 style={{ fontSize: '26px', fontWeight: 800, color: '#fff', letterSpacing: '0.02em' }}>
+                <h1 style={{ fontSize: '26px', fontWeight: 800, color: 'var(--text-heading)', letterSpacing: '0.02em' }}>
                   {team.name}
                 </h1>
                 <span style={{
@@ -161,7 +161,7 @@ export default function TeamDetailView({ team, commits, onBack, onSelectCommit, 
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
             <div style={{ backgroundColor: 'var(--bg-surface-lowest)', padding: '12px', borderRadius: '6px' }}>
               <div style={{ fontSize: '11px', color: 'var(--text-dim)', fontFamily: 'var(--font-mono)' }}>TOTAL COMMITS</div>
-              <div style={{ fontSize: '20px', fontWeight: 800, color: '#fff', fontFamily: 'var(--font-mono)', marginTop: '4px' }}>
+              <div style={{ fontSize: '20px', fontWeight: 800, color: 'var(--text-heading)', fontFamily: 'var(--font-mono)', marginTop: '4px' }}>
                 {team.totalCommits + teamCommits.length}
               </div>
             </div>
@@ -223,7 +223,7 @@ export default function TeamDetailView({ team, commits, onBack, onSelectCommit, 
                   }}>
                     {m.name.charAt(0)}
                   </div>
-                  <span style={{ fontWeight: 600, color: '#fff', fontSize: '14px' }}>{m.name}</span>
+                  <span style={{ fontWeight: 600, color: 'var(--text-heading)', fontSize: '14px' }}>{m.name}</span>
                 </div>
                 <span style={{
                   fontSize: '11px',
@@ -249,7 +249,7 @@ export default function TeamDetailView({ team, commits, onBack, onSelectCommit, 
         padding: '24px'
       }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '20px' }}>
-          <h3 style={{ fontSize: '16px', fontWeight: 800, color: '#fff', fontFamily: 'var(--font-mono)', display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <h3 style={{ fontSize: '16px', fontWeight: 800, color: 'var(--text-heading)', fontFamily: 'var(--font-mono)', display: 'flex', alignItems: 'center', gap: '8px' }}>
             <GitCommit size={18} color="var(--primary-bright)" /> TEAM COMMIT STREAM ({teamCommits.length})
           </h3>
           <span style={{ fontSize: '12px', color: 'var(--text-dim)', fontFamily: 'var(--font-mono)' }}>
@@ -298,7 +298,7 @@ export default function TeamDetailView({ team, commits, onBack, onSelectCommit, 
                     </span>
                     <span style={{ fontSize: '12px', color: 'var(--text-dim)' }}>• {c.author}</span>
                   </div>
-                  <div style={{ color: '#fff', fontWeight: 600, fontSize: '14px' }}>
+                  <div style={{ color: 'var(--text-heading)', fontWeight: 600, fontSize: '14px' }}>
                     {c.message}
                   </div>
                 </div>

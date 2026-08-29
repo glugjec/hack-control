@@ -542,7 +542,7 @@ export default function Leaderboard({ teams, commits, onSelectTeam, onSelectComm
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '16px' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                 <Activity size={22} color="var(--tertiary)" />
-                <h3 style={{ fontSize: '18px', fontWeight: 800, color: '#fff', letterSpacing: '0.02em' }}>
+                <h3 style={{ fontSize: '18px', fontWeight: 800, color: 'var(--text-heading)', letterSpacing: '0.02em' }}>
                   HEALTH_SCORE // METRIC FORMULA
                 </h3>
               </div>

@@ -59,7 +59,7 @@ export default function ActivityFeed({ commits, teams, onSelectCommit, onSelectT
               <Layers size={14} color="var(--secondary)" />
             </div>
             <div style={{ marginTop: '10px', display: 'flex', alignItems: 'baseline', justifyContent: 'space-between' }}>
-              <span style={{ fontSize: '20px', fontWeight: 800, fontFamily: 'var(--font-mono)', color: '#fff' }}>
+              <span style={{ fontSize: '20px', fontWeight: 800, fontFamily: 'var(--font-mono)', color: 'var(--text-heading)' }}>
                 {cs.commitsCount}
               </span>
               <span style={{ fontSize: '11px', color: 'var(--text-muted)' }}>
@@ -92,7 +92,7 @@ export default function ActivityFeed({ commits, teams, onSelectCommit, onSelectT
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
             <Radio size={20} color="var(--secondary)" />
             <div>
-              <h2 style={{ fontSize: '18px', fontWeight: 800, color: '#fff', letterSpacing: '0.02em' }}>
+              <h2 style={{ fontSize: '18px', fontWeight: 800, color: 'var(--text-heading)', letterSpacing: '0.02em' }}>
                 GLOBAL_EVENT_STREAM
               </h2>
               <p style={{ fontSize: '12px', color: 'var(--text-dim)', fontFamily: 'var(--font-mono)' }}>
@@ -115,7 +115,7 @@ export default function ActivityFeed({ commits, teams, onSelectCommit, onSelectT
                     fontWeight: 700,
                     textTransform: 'uppercase',
                     backgroundColor: filterType === t ? 'var(--primary)' : 'transparent',
-                    color: filterType === t ? '#07006c' : 'var(--text-muted)'
+                    color: filterType === t ? '#ffffff' : 'var(--text-muted)'
                   }}
                 >
                   {t}
@@ -209,7 +209,7 @@ export default function ActivityFeed({ commits, teams, onSelectCommit, onSelectT
                         <span style={{ fontSize: '11px', color: 'var(--text-muted)' }}>by {c.author}</span>
                       </div>
 
-                      <div style={{ color: '#fff', fontWeight: 600, fontSize: '14px', marginBottom: '4px' }}>
+                      <div style={{ color: 'var(--text-heading)', fontWeight: 600, fontSize: '14px', marginBottom: '4px' }}>
                         {c.message}
                       </div>
 

@@ -144,7 +144,7 @@ export default function LiveDashboard({
             }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                 <span className="pulse-dot" />
-                <h2 style={{ fontSize: '18px', fontWeight: 800, color: '#fff', letterSpacing: '0.02em' }}>
+                <h2 style={{ fontSize: '18px', fontWeight: 800, color: 'var(--text-heading)', letterSpacing: '0.02em' }}>
                   LIVE_FEED
                 </h2>
               </div>
@@ -164,7 +164,7 @@ export default function LiveDashboard({
                   border: '1px dashed var(--outline)'
                 }}>
                   <GitCommit size={32} color="var(--text-dim)" style={{ margin: '0 auto 12px' }} />
-                  <div style={{ fontWeight: 700, color: '#fff', fontSize: '15px' }}>
+                  <div style={{ fontWeight: 700, color: 'var(--text-heading)', fontSize: '15px' }}>
                     No Commit Telemetry Stream Recorded Yet
                   </div>
                   <div style={{ fontSize: '12px', color: 'var(--text-dim)', marginTop: '6px', fontFamily: 'var(--font-mono)', maxWidth: '420px', margin: '6px auto 16px' }}>
@@ -175,7 +175,7 @@ export default function LiveDashboard({
                       onClick={onOpenAddTeam}
                       style={{
                         backgroundColor: 'var(--primary)',
-                        color: '#07006c',
+                        color: '#ffffff',
                         padding: '8px 16px',
                         borderRadius: '6px',
                         fontSize: '12px',
@@ -269,7 +269,7 @@ export default function LiveDashboard({
                           </span>
                         </div>
 
-                        <div style={{ color: '#fff', fontWeight: 600, fontSize: '14px', marginBottom: '6px', lineHeight: 1.3 }}>
+                        <div style={{ color: 'var(--text-heading)', fontWeight: 600, fontSize: '14px', marginBottom: '6px', lineHeight: 1.3 }}>
                           {c.message}
                         </div>
 
@@ -458,7 +458,7 @@ export default function LiveDashboard({
                       borderRadius: '50%',
                       backgroundColor: t.avatarColor || 'var(--primary)'
                     }} />
-                    <span style={{ fontWeight: 700, fontSize: '13px', color: '#fff' }}>{t.name}</span>
+                    <span style={{ fontWeight: 700, fontSize: '13px', color: 'var(--text-heading)' }}>{t.name}</span>
                   </div>
 
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>

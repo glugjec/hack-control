@@ -286,7 +286,7 @@ export default function TeamEvaluation({ teams, commits, onNavigateToTeam }) {
             <ClipboardCheck size={26} color="var(--primary-bright)" />
           </div>
           <div>
-            <h1 style={{ fontSize: '24px', fontWeight: 800, color: '#fff', letterSpacing: '0.02em', margin: 0 }}>
+            <h1 style={{ fontSize: '24px', fontWeight: 800, color: 'var(--text-heading)', letterSpacing: '0.02em', margin: 0 }}>
               TEAM_EVALUATION // JUDGING & NOTES DESK
             </h1>
             <p style={{ fontSize: '13px', color: 'var(--text-dim)', fontFamily: 'var(--font-mono)', margin: '4px 0 0' }}>
@@ -318,7 +318,7 @@ export default function TeamEvaluation({ teams, commits, onNavigateToTeam }) {
               style={{
                 backgroundColor: 'transparent',
                 border: 'none',
-                color: '#fff',
+                color: 'var(--text-heading)',
                 fontWeight: 700,
                 fontSize: '13px',
                 width: '130px',
@@ -359,7 +359,7 @@ export default function TeamEvaluation({ teams, commits, onNavigateToTeam }) {
           textAlign: 'center'
         }}>
           <ClipboardCheck size={36} color="var(--text-dim)" style={{ margin: '0 auto 12px' }} />
-          <h2 style={{ fontSize: '18px', fontWeight: 800, color: '#fff' }}>
+          <h2 style={{ fontSize: '18px', fontWeight: 800, color: 'var(--text-heading)' }}>
             No Registered Teams Found For Evaluation
           </h2>
           <p style={{ fontSize: '13px', color: 'var(--text-dim)', fontFamily: 'var(--font-mono)', marginTop: '6px' }}>
@@ -423,7 +423,7 @@ export default function TeamEvaluation({ teams, commits, onNavigateToTeam }) {
                             borderRadius: '50%',
                             backgroundColor: t.avatarColor || 'var(--primary)'
                           }} />
-                          <span style={{ fontWeight: 800, fontSize: '14px', color: isSelected ? 'var(--primary-bright)' : '#fff' }}>
+                          <span style={{ fontWeight: 800, fontSize: '14px', color: isSelected ? 'var(--primary-bright)' : 'var(--text-heading)' }}>
                             {t.name}
                           </span>
                         </div>
@@ -478,8 +478,8 @@ export default function TeamEvaluation({ teams, commits, onNavigateToTeam }) {
 
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', fontSize: '11px', fontFamily: 'var(--font-mono)', color: 'var(--text-dim)' }}>
                   <div>Health Score: <strong style={{ color: 'var(--tertiary)' }}>{currentTeam.healthScore}%</strong></div>
-                  <div>Category: <strong style={{ color: '#fff' }}>{currentTeam.category || 'General'}</strong></div>
-                  <div>Members: <strong style={{ color: '#fff' }}>{currentTeam.members ? currentTeam.members.map(m => m.name).join(', ') : 'N/A'}</strong></div>
+                  <div>Category: <strong style={{ color: 'var(--text-heading)' }}>{currentTeam.category || 'General'}</strong></div>
+                  <div>Members: <strong style={{ color: 'var(--text-heading)' }}>{currentTeam.members ? currentTeam.members.map(m => m.name).join(', ') : 'N/A'}</strong></div>
                   <div>Last Commit: <strong style={{ color: 'var(--secondary)' }}>{currentTeam.lastCommitTime || 'N/A'}</strong></div>
                 </div>
 
@@ -588,7 +588,7 @@ export default function TeamEvaluation({ teams, commits, onNavigateToTeam }) {
                 </button>
               </div>
 
-              <div style={{ fontSize: '13px', fontWeight: 800, color: '#fff' }}>
+              <div style={{ fontSize: '13px', fontWeight: 800, color: 'var(--text-heading)' }}>
                 EVALUATING: <span style={{ color: 'var(--primary-bright)' }}>{currentTeam ? currentTeam.name : 'None'}</span>
               </div>
             </div>
@@ -604,7 +604,7 @@ export default function TeamEvaluation({ teams, commits, onNavigateToTeam }) {
                   padding: '20px'
                 }}>
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '14px' }}>
-                    <div style={{ fontSize: '14px', fontWeight: 800, color: '#fff', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <div style={{ fontSize: '14px', fontWeight: 800, color: 'var(--text-heading)', display: 'flex', alignItems: 'center', gap: '8px' }}>
                       <Plus size={16} color="var(--primary)" />
                       {editingNoteId ? 'EDIT EVALUATION NOTE' : 'LOG NEW EVALUATION NOTE WITH TIMESTAMP'}
                     </div>
@@ -688,7 +688,7 @@ export default function TeamEvaluation({ teams, commits, onNavigateToTeam }) {
                         type="submit"
                         style={{
                           backgroundColor: 'var(--primary)',
-                          color: '#07006c',
+                          color: '#ffffff',
                           border: 'none',
                           padding: '8px 18px',
                           borderRadius: '6px',
@@ -716,7 +716,7 @@ export default function TeamEvaluation({ teams, commits, onNavigateToTeam }) {
                   padding: '20px'
                 }}>
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '16px', paddingBottom: '12px', borderBottom: '1px solid var(--outline)' }}>
-                    <div style={{ fontWeight: 800, fontSize: '15px', color: '#fff', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <div style={{ fontWeight: 800, fontSize: '15px', color: 'var(--text-heading)', display: 'flex', alignItems: 'center', gap: '8px' }}>
                       <Clock size={16} color="var(--tertiary)" />
                       TIMELINE LOG ({currentTeamNotes.length} Notes Recorded)
                     </div>
@@ -728,7 +728,7 @@ export default function TeamEvaluation({ teams, commits, onNavigateToTeam }) {
                   {currentTeamNotes.length === 0 ? (
                     <div style={{ padding: '36px', textAlign: 'center', backgroundColor: 'var(--bg-surface-lowest)', borderRadius: '8px', border: '1px dashed var(--outline)' }}>
                       <MessageSquare size={28} color="var(--text-dim)" style={{ margin: '0 auto 8px' }} />
-                      <div style={{ color: '#fff', fontWeight: 700, fontSize: '14px' }}>
+                      <div style={{ color: 'var(--text-heading)', fontWeight: 700, fontSize: '14px' }}>
                         No evaluation notes recorded for {currentTeam?.name} yet
                       </div>
                       <div style={{ fontSize: '12px', color: 'var(--text-dim)', fontFamily: 'var(--font-mono)', marginTop: '4px' }}>
@@ -765,7 +765,7 @@ export default function TeamEvaluation({ teams, commits, onNavigateToTeam }) {
                                   {tagInfo.label.toUpperCase()}
                                 </span>
 
-                                <span style={{ fontSize: '12px', fontWeight: 700, color: '#fff', fontFamily: 'var(--font-mono)' }}>
+                                <span style={{ fontSize: '12px', fontWeight: 700, color: 'var(--text-heading)', fontFamily: 'var(--font-mono)' }}>
                                   By {n.author}
                                 </span>
 
@@ -845,7 +845,7 @@ export default function TeamEvaluation({ teams, commits, onNavigateToTeam }) {
               }}>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '20px', paddingBottom: '14px', borderBottom: '1px solid var(--outline)' }}>
                   <div>
-                    <h3 style={{ fontSize: '18px', fontWeight: 800, color: '#fff', margin: 0, display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <h3 style={{ fontSize: '18px', fontWeight: 800, color: 'var(--text-heading)', margin: 0, display: 'flex', alignItems: 'center', gap: '8px' }}>
                       <Award size={20} color="var(--tertiary)" />
                       RUBRIC EVALUATION SCORECARD FOR {currentTeam?.name}
                     </h3>
@@ -864,7 +864,7 @@ export default function TeamEvaluation({ teams, commits, onNavigateToTeam }) {
                     <div style={{ fontSize: '10px', fontFamily: 'var(--font-mono)', color: 'var(--tertiary)', fontWeight: 700 }}>
                       TOTAL SCORE
                     </div>
-                    <div style={{ fontSize: '22px', fontWeight: 900, color: '#fff', fontFamily: 'var(--font-mono)' }}>
+                    <div style={{ fontSize: '22px', fontWeight: 900, color: 'var(--text-heading)', fontFamily: 'var(--font-mono)' }}>
                       {currentTotalRubricScore} <span style={{ fontSize: '13px', color: 'var(--text-dim)' }}>/ 100</span>
                     </div>
                   </div>
@@ -874,7 +874,7 @@ export default function TeamEvaluation({ teams, commits, onNavigateToTeam }) {
                   {/* Criteria 1: Technical Complexity */}
                   <div style={{ padding: '16px', borderRadius: '8px', backgroundColor: 'var(--bg-surface-lowest)', border: '1px solid var(--outline)' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-                      <label style={{ fontWeight: 700, fontSize: '14px', color: '#fff' }}>
+                      <label style={{ fontWeight: 700, fontSize: '14px', color: 'var(--text-heading)' }}>
                         1. Technical Complexity & Code Architecture (0 – 20 Pts)
                       </label>
                       <input
@@ -894,7 +894,7 @@ export default function TeamEvaluation({ teams, commits, onNavigateToTeam }) {
                   {/* Criteria 2: Pitch & Presentation */}
                   <div style={{ padding: '16px', borderRadius: '8px', backgroundColor: 'var(--bg-surface-lowest)', border: '1px solid var(--outline)' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-                      <label style={{ fontWeight: 700, fontSize: '14px', color: '#fff' }}>
+                      <label style={{ fontWeight: 700, fontSize: '14px', color: 'var(--text-heading)' }}>
                         2. Pitch & Presentation (0 – 20 Pts)
                       </label>
                       <input
@@ -914,7 +914,7 @@ export default function TeamEvaluation({ teams, commits, onNavigateToTeam }) {
                   {/* Criteria 3: UI/UX & Execution */}
                   <div style={{ padding: '16px', borderRadius: '8px', backgroundColor: 'var(--bg-surface-lowest)', border: '1px solid var(--outline)' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-                      <label style={{ fontWeight: 700, fontSize: '14px', color: '#fff' }}>
+                      <label style={{ fontWeight: 700, fontSize: '14px', color: 'var(--text-heading)' }}>
                         3. UI / UX & Product Polish (0 – 20 Pts)
                       </label>
                       <input
@@ -934,7 +934,7 @@ export default function TeamEvaluation({ teams, commits, onNavigateToTeam }) {
                   {/* Criteria 4: Telemetry & Git Hygiene */}
                   <div style={{ padding: '16px', borderRadius: '8px', backgroundColor: 'var(--bg-surface-lowest)', border: '1px solid var(--outline)' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-                      <label style={{ fontWeight: 700, fontSize: '14px', color: '#fff' }}>
+                      <label style={{ fontWeight: 700, fontSize: '14px', color: 'var(--text-heading)' }}>
                         4. Telemetry & Commit Velocity Hygiene (0 – 20 Pts)
                       </label>
                       <input
@@ -954,7 +954,7 @@ export default function TeamEvaluation({ teams, commits, onNavigateToTeam }) {
                   {/* Criteria 5: Innovation */}
                   <div style={{ padding: '16px', borderRadius: '8px', backgroundColor: 'var(--bg-surface-lowest)', border: '1px solid var(--outline)' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-                      <label style={{ fontWeight: 700, fontSize: '14px', color: '#fff' }}>
+                      <label style={{ fontWeight: 700, fontSize: '14px', color: 'var(--text-heading)' }}>
                         5. Innovation & Practical Impact (0 – 20 Pts)
                       </label>
                       <input
@@ -989,7 +989,7 @@ export default function TeamEvaluation({ teams, commits, onNavigateToTeam }) {
                 padding: '24px'
               }}>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '20px' }}>
-                  <h3 style={{ fontSize: '18px', fontWeight: 800, color: '#fff', margin: 0, display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <h3 style={{ fontSize: '18px', fontWeight: 800, color: 'var(--text-heading)', margin: 0, display: 'flex', alignItems: 'center', gap: '8px' }}>
                     <BarChart size={20} color="var(--secondary)" />
                     ALL TEAMS EVALUATION & SCORE SUMMARY
                   </h3>
@@ -1015,7 +1015,7 @@ export default function TeamEvaluation({ teams, commits, onNavigateToTeam }) {
 
                         return (
                           <tr key={t.id} style={{ borderBottom: '1px solid var(--bg-surface-high)' }}>
-                            <td style={{ padding: '12px', fontWeight: 700, color: '#fff' }}>
+                            <td style={{ padding: '12px', fontWeight: 700, color: 'var(--text-heading)' }}>
                               {t.name}
                             </td>
                             <td style={{ padding: '12px', fontSize: '12px', color: 'var(--text-muted)' }}>

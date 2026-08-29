@@ -133,7 +133,7 @@ export default function AddTeamModal({ isOpen, onClose, onAddTeam }) {
               <Plus size={18} color="var(--primary-bright)" />
             </div>
             <div>
-              <h2 style={{ fontSize: '18px', fontWeight: 800, color: '#fff', letterSpacing: '0.02em' }}>
+              <h2 style={{ fontSize: '18px', fontWeight: 800, color: 'var(--text-heading)', letterSpacing: '0.02em' }}>
                 INITIALIZE_NEW_TEAM
               </h2>
               <p style={{ fontSize: '12px', color: 'var(--text-dim)', fontFamily: 'var(--font-mono)' }}>
@@ -328,7 +328,7 @@ export default function AddTeamModal({ isOpen, onClose, onAddTeam }) {
               type="submit"
               style={{
                 backgroundColor: 'var(--primary)',
-                color: '#07006c',
+                color: '#ffffff',
                 padding: '10px 20px',
                 borderRadius: '6px',
                 fontWeight: 800,

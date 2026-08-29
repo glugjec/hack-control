@@ -175,7 +175,7 @@ export default function BulkImportModal({ isOpen, onClose, onBulkAddTeams }) {
               <Upload size={18} color="var(--secondary)" />
             </div>
             <div>
-              <h2 style={{ fontSize: '18px', fontWeight: 800, color: '#fff', letterSpacing: '0.02em' }}>
+              <h2 style={{ fontSize: '18px', fontWeight: 800, color: 'var(--text-heading)', letterSpacing: '0.02em' }}>
                 BULK_TEAM_IMPORT // CSV SPREADSHEET
               </h2>
               <p style={{ fontSize: '12px', color: 'var(--text-dim)', fontFamily: 'var(--font-mono)' }}>
@@ -229,7 +229,7 @@ export default function BulkImportModal({ isOpen, onClose, onBulkAddTeams }) {
               }}
             />
             <FileText size={28} color="var(--secondary)" style={{ margin: '0 auto 8px' }} />
-            <div style={{ fontWeight: 700, color: '#fff', fontSize: '14px' }}>
+            <div style={{ fontWeight: 700, color: 'var(--text-heading)', fontSize: '14px' }}>
               Upload .CSV File or Drag & Drop
             </div>
             <div style={{ fontSize: '12px', color: 'var(--text-dim)', marginTop: '4px' }}>

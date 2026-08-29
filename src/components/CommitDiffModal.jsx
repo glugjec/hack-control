@@ -123,7 +123,7 @@ export default function CommitDiffModal({ commit, onClose }) {
                 <GitBranch size={13} /> {commit.branch || 'main'}
               </span>
             </div>
-            <h2 style={{ fontSize: '18px', fontWeight: 700, color: '#fff', lineHeight: 1.3 }}>
+            <h2 style={{ fontSize: '18px', fontWeight: 700, color: 'var(--text-heading)', lineHeight: 1.3 }}>
               {commit.message}
             </h2>
           </div>
@@ -168,7 +168,7 @@ export default function CommitDiffModal({ commit, onClose }) {
             </div>
             <div>
               <div style={{ fontSize: '11px', color: 'var(--text-dim)', fontFamily: 'var(--font-mono)' }}>AUTHOR</div>
-              <div style={{ fontWeight: 600, color: '#fff', marginTop: '2px', display: 'flex', alignItems: 'center', gap: '4px' }}>
+              <div style={{ fontWeight: 600, color: 'var(--text-heading)', marginTop: '2px', display: 'flex', alignItems: 'center', gap: '4px' }}>
                 <User size={13} color="var(--secondary)" /> {commit.author}
               </div>
             </div>
@@ -286,7 +286,7 @@ export default function CommitDiffModal({ commit, onClose }) {
                     >
                       <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                         <FileText size={15} color="var(--text-dim)" />
-                        <span style={{ fontFamily: 'var(--font-mono)', fontSize: '13px', fontWeight: 700, color: '#fff', wordBreak: 'break-all' }}>
+                        <span style={{ fontFamily: 'var(--font-mono)', fontSize: '13px', fontWeight: 700, color: 'var(--text-heading)', wordBreak: 'break-all' }}>
                           {file.filename}
                         </span>
                         <span style={{
@@ -461,7 +461,7 @@ export default function CommitDiffModal({ commit, onClose }) {
               rel="noreferrer"
               style={{
                 backgroundColor: 'var(--primary)',
-                color: '#07006c',
+                color: '#ffffff',
                 padding: '8px 16px',
                 borderRadius: '6px',
                 fontWeight: 800,

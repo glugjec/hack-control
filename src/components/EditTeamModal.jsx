@@ -100,8 +100,8 @@ export default function EditTeamModal({ isOpen, onClose, team, onSaveTeam, onDel
       <div 
         className="animate-slide-in"
         style={{
-          backgroundColor: '#0a1628',
-          border: '1px solid var(--border-neon)',
+          backgroundColor: 'var(--bg-surface-low)',
+          border: '1px solid var(--outline)',
           borderRadius: '16px',
           width: '100%',
           maxWidth: '560px',
@@ -115,11 +115,11 @@ export default function EditTeamModal({ isOpen, onClose, team, onSaveTeam, onDel
         {/* Header */}
         <div style={{
           padding: '20px 24px',
-          borderBottom: '1px solid var(--border-light)',
+          borderBottom: '1px solid var(--outline)',
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
-          backgroundColor: '#060e20'
+          backgroundColor: 'var(--bg-surface)'
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
             <div style={{
@@ -131,7 +131,7 @@ export default function EditTeamModal({ isOpen, onClose, team, onSaveTeam, onDel
               <Terminal size={20} />
             </div>
             <div>
-              <h3 style={{ fontSize: '18px', fontWeight: 800, color: '#fff', margin: 0, letterSpacing: '0.5px' }}>
+              <h3 style={{ fontSize: '18px', fontWeight: 800, color: 'var(--text-heading)', margin: 0, letterSpacing: '0.5px' }}>
                 MODIFY TEAM DETAILS
               </h3>
               <p style={{ fontSize: '12px', color: 'var(--text-dim)', margin: 0, fontFamily: 'var(--font-mono)' }}>
@@ -157,7 +157,7 @@ export default function EditTeamModal({ isOpen, onClose, team, onSaveTeam, onDel
         <form onSubmit={handleSubmit} style={{ padding: '24px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
           {/* Team Name */}
           <div>
-            <label style={{ display: 'block', fontSize: '12px', fontFamily: 'var(--font-mono)', fontWeight: 700, color: 'var(--primary-light)', marginBottom: '8px' }}>
+            <label style={{ display: 'block', fontSize: '12px', fontFamily: 'var(--font-mono)', fontWeight: 700, color: 'var(--primary-bright)', marginBottom: '8px' }}>
               TEAM / PROJECT NAME *
             </label>
             <input 
@@ -168,11 +168,11 @@ export default function EditTeamModal({ isOpen, onClose, team, onSaveTeam, onDel
               placeholder="e.g. Quantum_Devs"
               style={{
                 width: '100%',
-                backgroundColor: 'rgba(255,255,255,0.03)',
-                border: '1px solid var(--border-light)',
+                backgroundColor: 'var(--bg-surface-lowest)',
+                border: '1px solid var(--outline)',
                 borderRadius: '8px',
                 padding: '12px 14px',
-                color: '#fff',
+                color: 'var(--text-main)',
                 fontFamily: 'var(--font-mono)',
                 fontSize: '14px',
                 outline: 'none'
@@ -183,7 +183,7 @@ export default function EditTeamModal({ isOpen, onClose, team, onSaveTeam, onDel
           {/* GitHub Repo with Ping Test */}
           <div>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-              <label style={{ fontSize: '12px', fontFamily: 'var(--font-mono)', fontWeight: 700, color: 'var(--primary-light)' }}>
+              <label style={{ fontSize: '12px', fontFamily: 'var(--font-mono)', fontWeight: 700, color: 'var(--primary-bright)' }}>
                 PUBLIC GITHUB REPOSITORY *
               </label>
               <button
@@ -217,11 +217,11 @@ export default function EditTeamModal({ isOpen, onClose, team, onSaveTeam, onDel
               placeholder="github.com/owner/repo or owner/repo"
               style={{
                 width: '100%',
-                backgroundColor: 'rgba(255,255,255,0.03)',
-                border: testResult ? (testResult.success ? '1px solid var(--tertiary)' : '1px solid var(--error)') : '1px solid var(--border-light)',
+                backgroundColor: 'var(--bg-surface-lowest)',
+                border: testResult ? (testResult.success ? '1px solid var(--tertiary)' : '1px solid var(--error)') : '1px solid var(--outline)',
                 borderRadius: '8px',
                 padding: '12px 14px',
-                color: '#fff',
+                color: 'var(--text-main)',
                 fontFamily: 'var(--font-mono)',
                 fontSize: '14px',
                 outline: 'none'
@@ -254,7 +254,7 @@ export default function EditTeamModal({ isOpen, onClose, team, onSaveTeam, onDel
 
           {/* Track / Category */}
           <div>
-            <label style={{ display: 'block', fontSize: '12px', fontFamily: 'var(--font-mono)', fontWeight: 700, color: 'var(--primary-light)', marginBottom: '8px' }}>
+            <label style={{ display: 'block', fontSize: '12px', fontFamily: 'var(--font-mono)', fontWeight: 700, color: 'var(--primary-bright)', marginBottom: '8px' }}>
               HACKATHON TRACK / CATEGORY
             </label>
             <select
@@ -262,11 +262,11 @@ export default function EditTeamModal({ isOpen, onClose, team, onSaveTeam, onDel
               onChange={(e) => setCategory(e.target.value)}
               style={{
                 width: '100%',
-                backgroundColor: '#0a1628',
-                border: '1px solid var(--border-light)',
+                backgroundColor: 'var(--bg-surface-lowest)',
+                border: '1px solid var(--outline)',
                 borderRadius: '8px',
                 padding: '12px 14px',
-                color: '#fff',
+                color: 'var(--text-main)',
                 fontSize: '14px',
                 outline: 'none'
               }}
@@ -282,7 +282,7 @@ export default function EditTeamModal({ isOpen, onClose, team, onSaveTeam, onDel
 
           {/* Members */}
           <div>
-            <label style={{ display: 'block', fontSize: '12px', fontFamily: 'var(--font-mono)', fontWeight: 700, color: 'var(--primary-light)', marginBottom: '8px' }}>
+            <label style={{ display: 'block', fontSize: '12px', fontFamily: 'var(--font-mono)', fontWeight: 700, color: 'var(--primary-bright)', marginBottom: '8px' }}>
               TEAM MEMBERS (COMMA SEPARATED)
             </label>
             <input 
@@ -292,11 +292,11 @@ export default function EditTeamModal({ isOpen, onClose, team, onSaveTeam, onDel
               placeholder="Alex Rivera, Elena Chen, Marcus Vance"
               style={{
                 width: '100%',
-                backgroundColor: 'rgba(255,255,255,0.03)',
-                border: '1px solid var(--border-light)',
+                backgroundColor: 'var(--bg-surface-lowest)',
+                border: '1px solid var(--outline)',
                 borderRadius: '8px',
                 padding: '12px 14px',
-                color: '#fff',
+                color: 'var(--text-main)',
                 fontFamily: 'var(--font-sans)',
                 fontSize: '14px',
                 outline: 'none'
@@ -306,7 +306,7 @@ export default function EditTeamModal({ isOpen, onClose, team, onSaveTeam, onDel
 
           {/* Problem Statement */}
           <div>
-            <label style={{ display: 'block', fontSize: '12px', fontFamily: 'var(--font-mono)', fontWeight: 700, color: 'var(--primary-light)', marginBottom: '8px' }}>
+            <label style={{ display: 'block', fontSize: '12px', fontFamily: 'var(--font-mono)', fontWeight: 700, color: 'var(--primary-bright)', marginBottom: '8px' }}>
               PROBLEM STATEMENT / SUMMARY
             </label>
             <textarea 
@@ -316,11 +316,11 @@ export default function EditTeamModal({ isOpen, onClose, team, onSaveTeam, onDel
               placeholder="Brief description of the project..."
               style={{
                 width: '100%',
-                backgroundColor: 'rgba(255,255,255,0.03)',
-                border: '1px solid var(--border-light)',
+                backgroundColor: 'var(--bg-surface-lowest)',
+                border: '1px solid var(--outline)',
                 borderRadius: '8px',
                 padding: '12px 14px',
-                color: '#fff',
+                color: 'var(--text-main)',
                 fontFamily: 'var(--font-sans)',
                 fontSize: '14px',
                 outline: 'none',
@@ -330,7 +330,7 @@ export default function EditTeamModal({ isOpen, onClose, team, onSaveTeam, onDel
           </div>
 
           {/* Action Buttons */}
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '12px', paddingTop: '16px', borderTop: '1px solid var(--border-light)' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '12px', paddingTop: '16px', borderTop: '1px solid var(--outline)' }}>
             <button
               type="button"
               onClick={handleDeleteClick}
@@ -356,7 +356,7 @@ export default function EditTeamModal({ isOpen, onClose, team, onSaveTeam, onDel
                 style={{
                   backgroundColor: 'transparent',
                   color: 'var(--text-dim)',
-                  border: '1px solid var(--border-light)',
+                  border: '1px solid var(--outline)',
                   padding: '10px 18px',
                   borderRadius: '8px',
                   fontWeight: 600,
@@ -371,7 +371,7 @@ export default function EditTeamModal({ isOpen, onClose, team, onSaveTeam, onDel
                 type="submit"
                 style={{
                   backgroundColor: 'var(--primary)',
-                  color: '#fff',
+                  color: '#ffffff',
                   border: 'none',
                   padding: '10px 20px',
                   borderRadius: '8px',
